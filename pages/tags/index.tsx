@@ -3,12 +3,12 @@ import React from "react";
 import { PageMeta } from "../../components/AppPage";
 import { FancyText } from "../../components/Typography";
 
-export default function Tag() {
+export default function Tags() {
   return (
     <Container py={4} maxW="container.xl">
       <PageMeta />
       <Heading size="lg">
-        <FancyText>Tag View</FancyText>
+        <FancyText>Tags</FancyText>
       </Heading>
     </Container>
   );
