@@ -6,7 +6,7 @@ export default function Topics() {
   return (
     <PageContainer>
       <PageMeta title="Topics" />
-      <FancyHeading size="lg">Topics</FancyHeading>
+      <FancyHeading>Topics</FancyHeading>
     </PageContainer>
   );
 }

@@ -6,7 +6,7 @@ export default function Blogs() {
   return (
     <PageContainer>
       <PageMeta title="Blogs"/>
-      <FancyHeading size="lg">Blogs</FancyHeading>
+      <FancyHeading>Blogs</FancyHeading>
     </PageContainer>
   );
 }

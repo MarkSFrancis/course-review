@@ -6,7 +6,7 @@ export default function Courses() {
   return (
     <PageContainer>
       <PageMeta title="Courses" />
-      <FancyHeading size="lg">Courses</FancyHeading>
+      <FancyHeading>Courses</FancyHeading>
     </PageContainer>
   );
 }

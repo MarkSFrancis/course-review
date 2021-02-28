@@ -1,10 +1,10 @@
-import { Box, Container, HStack, IconButton } from "@chakra-ui/react";
+import { Box, Container, HStack, IconButton, Tooltip } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { ThemeToggle } from "../ThemeToggle";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarLink } from "./NavBarLink";
 import { AddIcon } from "@chakra-ui/icons";
-import { PageContainer } from '../Layout/PageContainer';
+import { PageContainer } from "../Layout/PageContainer";
 
 export const NavBar: FC = () => {
   return (
@@ -19,7 +19,9 @@ export const NavBar: FC = () => {
           </HStack>
           <HStack spacing={4}>
             <NavBarLink href="/add">
-              <IconButton aria-label="Add a resource" icon={<AddIcon />} />
+              <Tooltip label="Add a resource">
+                <IconButton aria-label="Add a resource" icon={<AddIcon />} />
+              </Tooltip>
             </NavBarLink>
             <ThemeToggle />
           </HStack>
