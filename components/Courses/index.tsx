@@ -1,10 +1,10 @@
 import { CoursesProvider } from "./CoursesContext";
-import { CourseList } from "./CourseList";
+import { CoursesList } from "./CoursesList";
 
 export const Courses = () => {
   return (
     <CoursesProvider>
-      <CourseList />
+      <CoursesList />
     </CoursesProvider>
   );
 };

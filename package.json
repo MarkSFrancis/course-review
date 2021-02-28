@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next dev",
-    "fire": "firebase emulators:start",
+    "fire": "firebase emulators:start --import ./.firebase/firestore-emulator-data --export-on-exit",
     "build": "next build",
     "build:prod": "yarn build && yarn next export",
     "start:prod": "next start",
@@ -25,6 +25,8 @@
     "@types/node": "^14.14.31",
     "@types/react": "^17.0.2",
     "bootstrap": "^4.6.0",
+    "dayjs": "^1.10.4",
+    "firebase": "^8.2.9",
     "firebase-tools": "^9.5.0",
     "react-bootstrap": "^1.5.0",
     "react-query": "^3.12.0",

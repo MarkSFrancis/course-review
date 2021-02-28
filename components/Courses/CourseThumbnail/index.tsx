@@ -1,6 +1,7 @@
-import { Box } from '@chakra-ui/react';
-import { FC, useEffect } from "react";
-import { useQuery } from 'react-query';
+import { Box, Text } from "@chakra-ui/react";
+import React, { FC } from "react";
+import { FancyHeading } from "../../Typography";
+import { RelativeTime } from "../../Units";
 import { Course } from "../CoursesContext";
 
 export interface CourseThumbnailProps {
@@ -8,9 +9,14 @@ export interface CourseThumbnailProps {
 }
 
 export const CourseThumbnail: FC<CourseThumbnailProps> = (props) => {
-  // const query = useQuery([props.course], async () => {
-  //   const response = await fetch(`${}` props.course.url);
-  // });
-
-  return <Box></Box>
+  return (
+    <Box borderRadius="lg" borderWidth="1px" p="6">
+      <FancyHeading>{props.course.title}</FancyHeading>
+      <Text isTruncated>
+        Added by {props.course.addedBy},{" "}
+        <RelativeTime>{props.course.addedOn}</RelativeTime>
+      </Text>
+      <Text isTruncated>{props.course.description}</Text>
+    </Box>
+  );
 };
