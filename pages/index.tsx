@@ -1,5 +1,5 @@
 import React from "react";
-import { PageMeta } from "../components/AppPage";
+import { PageMeta } from "../components/PageMeta";
 import { PageContainer } from "../components/Layout/PageContainer";
 import { RecentlyAdded } from "../components/RecentlyAdded";
 

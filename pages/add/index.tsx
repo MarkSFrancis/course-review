@@ -1,5 +1,5 @@
-import { Add } from "../../components/Add";
-import { PageMeta } from "../../components/AppPage";
+import { Add } from "../../components/AddResource";
+import { PageMeta } from "../../components/PageMeta";
 import { PageContainer } from "../../components/Layout/PageContainer";
 
 export default function AddPage() {

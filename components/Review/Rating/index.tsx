@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { StarIcon } from "@chakra-ui/icons";
-import { Tooltip, Text, useTheme, theme } from "@chakra-ui/react";
+import { Tooltip, Text, useTheme } from "@chakra-ui/react";
 
 export interface AverageRating {
   totalRatings: number;

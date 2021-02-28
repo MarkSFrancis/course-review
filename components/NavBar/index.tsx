@@ -1,14 +1,15 @@
-import { Box, Container, HStack, IconButton, Tooltip } from "@chakra-ui/react";
+import { HStack, IconButton, Tooltip } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { ThemeToggle } from "../ThemeToggle";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarLink } from "./NavBarLink";
 import { AddIcon } from "@chakra-ui/icons";
 import { PageContainer } from "../Layout/PageContainer";
+import { Section } from "../Layout";
 
 export const NavBar: FC = () => {
   return (
-    <Box boxShadow="md">
+    <Section boxShadow="md" p={0} borderRadius={0}>
       <PageContainer>
         <HStack justifyContent="space-between" spacing={4}>
           <HStack spacing={4}>
@@ -27,6 +28,6 @@ export const NavBar: FC = () => {
           </HStack>
         </HStack>
       </PageContainer>
-    </Box>
+    </Section>
   );
 };

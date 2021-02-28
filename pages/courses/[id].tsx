@@ -1,4 +1,4 @@
-import { PageMeta } from "../../components/AppPage";
+import { PageMeta } from "../../components/PageMeta";
 import { PageContainer } from '../../components/Layout/PageContainer';
 import { FancyHeading } from "../../components/Typography";
 
