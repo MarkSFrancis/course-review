@@ -2,11 +2,11 @@ import { PageMeta } from "../../components/AppPage";
 import { PageContainer } from '../../components/Layout/PageContainer';
 import { FancyHeading } from "../../components/Typography";
 
-export default function Course() {
+export default function Topics() {
   return (
     <PageContainer>
-      <PageMeta />
-      <FancyHeading size="lg">Course View</FancyHeading>
+      <PageMeta title="Topics" />
+      <FancyHeading size="lg">Topics</FancyHeading>
     </PageContainer>
   );
 }
