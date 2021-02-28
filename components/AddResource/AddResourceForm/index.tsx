@@ -14,7 +14,7 @@ import { useSafeState } from '../../../utils/hooks/useSafeState';
 export interface NewResource {}
 
 export interface AddFormProps {
-  onSubmit: () => Promise<void> | void;
+  onSubmit: (event: NewResource) => Promise<void> | void;
 }
 
 export const AddForm: FC<AddFormProps> = ({ onSubmit }) => {
@@ -25,7 +25,7 @@ export const AddForm: FC<AddFormProps> = ({ onSubmit }) => {
       e.preventDefault();
       setIsSubmitting(true);
       (async () => {
-        await onSubmit();
+        await onSubmit({});
         setIsSubmitting(false);
       })();
     },

@@ -1,15 +1,6 @@
-import { firestore } from "../../utils";
 import { createContext, FC, useContext } from "react";
 
 export interface Courses {}
-
-export interface Course {
-  url: string;
-  title: string;
-  description: string;
-  addedBy: string;
-  addedOn: firestore.Timestamp;
-}
 
 const coursesContext = createContext<Courses>({});
 
