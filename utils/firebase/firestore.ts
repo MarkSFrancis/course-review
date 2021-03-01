@@ -4,9 +4,14 @@ import { isDevMode } from "../isDevMode";
 import firebaseCore from "firebase/app";
 
 const firestoreDb = firebase.firestore();
+let initialised = false;
 
-if (isDevMode()) {
-  firestoreDb.useEmulator("localhost", 8080);
+if (!initialised) {
+  if (isDevMode()) {
+    firestoreDb.useEmulator("localhost", 8080);
+  }
+
+  initialised = true;
 }
 
 export const db = firestoreDb;
@@ -17,7 +22,10 @@ export type WithId<T> = T & {
 
 export namespace firestore {
   export type Timestamp = firebaseCore.firestore.Timestamp;
-  export type DocsRef<T> = firebaseCore.firestore.CollectionReference<T>;
+  export type CollectionRef<T> = firebaseCore.firestore.CollectionReference<T>;
+  export type CollectionQuery<
+    T = firebaseCore.firestore.DocumentData
+  > = firebaseCore.firestore.Query<T>;
   export type DocRef<
     T = firebaseCore.firestore.DocumentData
   > = firebaseCore.firestore.DocumentReference<T>;

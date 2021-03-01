@@ -1,5 +1,5 @@
-import { Reducer, useEffect, useReducer } from "react";
-import { WithId } from "../../../../firebase/firestore";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
+import { firestore, WithId } from "../../../../firebase/firestore";
 import { isDocQuery, Query, QueryResult } from "./queryTypeHelpers";
 import { QueryState } from "./state";
 import { useQueryCached } from "./useQueryCached";
@@ -45,7 +45,7 @@ const reducer = <T>(
   }
 };
 
-export const useFirestoreQueryReducer = <T, TQuery extends Query<T>>(
+export const useFirestoreQueryReducer = <T, TQuery extends Query>(
   query: TQuery,
   opts?: FirestoreQueryOptions | undefined
 ): QueryState<QueryResult<T, TQuery>> => {
@@ -55,7 +55,7 @@ export const useFirestoreQueryReducer = <T, TQuery extends Query<T>>(
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const queryCached = useQueryCached(query);
+  const queryCached = useMemo(() => query, []);
 
   useEffect(() => {
     const suspended = opts?.suspendUntil?.() === true;
@@ -91,10 +91,12 @@ export const useFirestoreQueryReducer = <T, TQuery extends Query<T>>(
             } as WithId<T>,
           });
         },
-        (err) => dispatch({ type: "error", payload: err })
+        (err) => {
+          dispatch({ type: "error", payload: err });
+        }
       );
     } else {
-      return queryCached.onSnapshot(
+      return (queryCached as firestore.CollectionQuery).onSnapshot(
         (refs) => {
           dispatch({
             type: "success",
@@ -107,10 +109,13 @@ export const useFirestoreQueryReducer = <T, TQuery extends Query<T>>(
             ),
           });
         },
-        (err) => dispatch({ type: "error", payload: err })
+        (err) => {
+          console.error("Failed to get data", err);
+          dispatch({ type: "error", payload: err });
+        }
       );
     }
-  }, [queryCached, opts]);
+  }, []);
 
   return state as QueryState<QueryResult<T, TQuery>>;
 };

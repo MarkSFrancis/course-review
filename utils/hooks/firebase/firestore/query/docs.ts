@@ -5,11 +5,11 @@ import {
 } from "./queryReducer";
 import { FirebaseQueryBuilder } from "./state";
 
-export const useFirestoreQueryDocs = <T>(
-  query: FirebaseQueryBuilder<T, firestore.DocsRef<T>>,
+export const useFirestoreQueryCollection = <T>(
+  query: FirebaseQueryBuilder<Record<string, any>, firestore.CollectionQuery>,
   opts?: FirestoreQueryOptions | undefined
 ) => {
   const ref = query(db);
 
-  return useFirestoreQueryReducer<T, firestore.DocsRef<T>>(ref, opts);
+  return useFirestoreQueryReducer<T, firestore.CollectionQuery>(ref, opts);
 };

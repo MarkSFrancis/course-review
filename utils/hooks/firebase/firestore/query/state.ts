@@ -1,7 +1,7 @@
 import { db as fireDb } from "../../../../firebase/firestore";
 import { Query } from './queryTypeHelpers';
 
-export type FirebaseQueryBuilder<T, TQuery extends Query<T>> = (
+export type FirebaseQueryBuilder<T, TQuery extends Query> = (
   db: typeof fireDb
 ) => TQuery;
 

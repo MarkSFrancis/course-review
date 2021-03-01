@@ -1,11 +1,19 @@
-import { createContext, FC, useContext } from "react";
+import { createContext, FC, ProviderProps, useContext } from "react";
+import { WithId } from '../../utils';
+import { Course } from "../Review/ReviewContext";
 
-export interface Courses {}
+export interface Courses {
+  courses: WithId<Course>[];
+}
 
-const coursesContext = createContext<Courses>({});
+const initialValue: Courses = {
+  courses: [],
+};
+
+const coursesContext = createContext<Courses>(initialValue);
 
 export const useCourses = () => useContext(coursesContext);
 
-export const CoursesProvider: FC = ({ children }) => (
-  <coursesContext.Provider value={{}}>{children}</coursesContext.Provider>
+export const CoursesProvider: FC<ProviderProps<Courses>> = (props) => (
+  <coursesContext.Provider {...props} />
 );

@@ -1,18 +1,16 @@
-import { firestore } from "../../../../firebase/firestore";
+import { firestore, WithId } from "../../../../firebase/firestore";
 
-export type Query<T> = firestore.DocsRef<T> | firestore.DocRef<T>;
+export type Query = firestore.CollectionQuery | firestore.DocRef;
 export type QueryResult<
   T,
-  TRef extends Query<T>
-> = TRef extends firestore.DocsRef<T> ? T[] : T;
+  TRef extends Query
+> = TRef extends firestore.CollectionQuery ? WithId<T>[] : WithId<T>;
 
-export function isDocQuery<T>(
-  query: Query<T>
-): query is firestore.DocRef<T> {
-  const colQuery = query as firestore.DocsRef<T>;
-  if (colQuery.doc) {
-    return false;
-  } else {
+export function isDocQuery(query: Query): query is firestore.DocRef {
+  const docQuery = query as firestore.DocRef;
+  if (docQuery.id) {
     return true;
+  } else {
+    return false;
   }
 }

@@ -1,12 +1,13 @@
 import { PageMeta } from "../../components/PageMeta";
 import { PageContainer } from '../../components/Layout/PageContainer';
-import { FancyHeading } from "../../components/Typography";
+import React from 'react';
+import { Courses } from '../../components/Courses';
 
-export default function Courses() {
+export default function CoursesPage() {
   return (
     <PageContainer>
       <PageMeta title="Courses" />
-      <FancyHeading>Courses</FancyHeading>
+      <Courses />
     </PageContainer>
   );
 }

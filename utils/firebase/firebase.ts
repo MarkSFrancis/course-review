@@ -3,3 +3,4 @@ import { initFirebase } from './init';
 
 initFirebase();
 export const firebase = firebaseCore;
+export type FirebaseError = firebaseCore.FirebaseError;
