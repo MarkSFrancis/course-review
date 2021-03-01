@@ -1,7 +1,7 @@
 import React from "react";
 import { PageMeta } from "../components/PageMeta";
 import { PageContainer } from "../components/Layout/PageContainer";
-import { RecentlyAdded } from "../components/RecentlyAdded";
+import { Resources } from '../components/Resources';
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
       <PageMeta>
         <title>Course Review - Share your learning</title>
       </PageMeta>
-      <RecentlyAdded />
+      <Resources />
     </PageContainer>
   );
 }

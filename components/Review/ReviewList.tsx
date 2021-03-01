@@ -1,8 +1,8 @@
 import { FancyHeading } from "../Typography";
-import { useCourses } from "./ReviewContext";
+import { useReviews } from "./ReviewContext";
 
-export const CoursesList = () => {
-  const courses = useCourses();
+export const ReviewsList = () => {
+  const reviews = useReviews();
 
-  return <FancyHeading>Courses</FancyHeading>;
+  return <FancyHeading>Reviews</FancyHeading>;
 };

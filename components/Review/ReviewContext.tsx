@@ -1,9 +1,9 @@
 import { firestore } from "../../utils";
 import { createContext, FC, useContext } from "react";
 
-export interface Courses {}
+export interface Reviews {}
 
-export interface Course {
+export interface Review {
   url: string;
   title: string;
   description: string;
@@ -11,10 +11,10 @@ export interface Course {
   addedOn: firestore.Timestamp;
 }
 
-const coursesContext = createContext<Courses>({});
+const reviewContext = createContext<Reviews>({});
 
-export const useCourses = () => useContext(coursesContext);
+export const useReviews = () => useContext(reviewContext);
 
-export const CoursesProvider: FC = ({ children }) => (
-  <coursesContext.Provider value={{}}>{children}</coursesContext.Provider>
+export const ReviewsProvider: FC = ({ children }) => (
+  <reviewContext.Provider value={{}}>{children}</reviewContext.Provider>
 );
