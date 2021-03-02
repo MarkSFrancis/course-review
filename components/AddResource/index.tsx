@@ -9,15 +9,15 @@ import { FormikHelpers } from "formik";
 
 export const AddResource: FC = () => {
   const [publish, publishState] = useFirestoreAdd<Resource>();
-  const { user } = useUser();
+  const user = useUser();
 
   const publishResource = useCallback(
     (evt: NewResource, helpers: FormikHelpers<NewResource>) => {
       publish("/resources", {
         createdBy: {
-          uid: user.uid,
-          displayName: user.displayName,
-          email: user.email,
+          uid: user.user.uid,
+          displayName: user.user.displayName,
+          email: user.user.email,
         },
         createdOn: now(),
         ...evt,
