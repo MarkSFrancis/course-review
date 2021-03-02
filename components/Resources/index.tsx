@@ -4,12 +4,12 @@ import React from "react";
 import { useFirestoreQueryCollection } from "../../utils";
 import { Section } from "../Layout";
 import { QueryGuard } from "../Query";
-import { Review } from "../Review/ReviewContext";
 import { FancyHeading } from "../Typography";
 import { VStack } from "@chakra-ui/react";
+import { Resource } from "../../models";
 
 export const Resources = () => {
-  const query = useFirestoreQueryCollection<Review>((db) =>
+  const query = useFirestoreQueryCollection<Resource>((db) =>
     db.collection("resources").orderBy("createdOn").limit(20)
   );
 
