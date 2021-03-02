@@ -1,9 +1,9 @@
-import { Heading, HStack, Tag } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { useResource } from "../ResourceContext";
 
 export const ResourceHeading: FC = () => {
-  const { title, resourceType } = useResource();
+  const { title } = useResource();
 
   return (
     <Heading color="#3182ce" size="lg">
