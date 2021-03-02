@@ -5,8 +5,7 @@ export interface Reviews {}
 
 export interface Review {
   url: string;
-  title: string;
-  description: string;
+  title: string;  
   addedBy: string;
   addedOn: firestore.Timestamp;
 }

@@ -41,7 +41,7 @@ export const useFetch = <
   TResult = void,
   TResponse = Response
 >(
-  func: (...params: TParams) => Promise<TResponse>,
+  func: (...params: TParams) => Promise<TResponse> | TResponse,
   responseHandler: (response: TResponse) => Promise<TResult> | TResult
 ) => {
   const [reducer, dispatch] = useReducer(fetchReducer, {
@@ -49,30 +49,31 @@ export const useFetch = <
     previousValue: undefined,
   });
 
-  const trigger = useCallback((...params: TParams) => {
+  const trigger = useCallback(async (...params: TParams) => {
     dispatch({
       type: "loading",
       payload: undefined,
     });
 
-    (async () => {
-      try {
-        const response = await func(...params);
-        const result = await responseHandler(response);
+    let result: TResult;
+    try {
+      const response = await func(...params);
+      result = await responseHandler(response);
 
-        dispatch({
-          type: "success",
-          payload: result as TResult,
-        });
-      } catch (err) {
-        dispatch({
-          type: "error",
-          payload: {
-            error: err,
-          },
-        });
-      }
-    })();
+      dispatch({
+        type: "success",
+        payload: result as TResult,
+      });
+    } catch (err) {
+      dispatch({
+        type: "error",
+        payload: {
+          error: err,
+        },
+      });
+    }
+
+    return result;
   }, []);
 
   return [trigger, reducer as FetchState<TResult>] as const;

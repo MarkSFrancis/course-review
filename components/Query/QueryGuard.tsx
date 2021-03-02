@@ -1,7 +1,7 @@
 import { Center, Spinner } from "@chakra-ui/react";
 import React, { ReactElement } from "react";
 import { QueryState, QuerySuccessState } from "../../utils";
-import { ErrorDisplay } from "../ErrorDisplay";
+import { ErrorDisplay } from "../Alert";
 
 export interface QueryGuardProps<T> {
   query: QueryState<T>;
@@ -25,17 +25,16 @@ export function QueryGuard<T>(props: QueryGuardProps<T>): ReactElement {
         <Center>
           <ErrorDisplay
             description={props.name && `Error fetching ${props.name}`}
-          >
-            {props.query.error}
-          </ErrorDisplay>
+            err={props.query.error}
+          />
         </Center>
       );
     case "notFound":
       return (
         <Center>
-          <ErrorDisplay>
-            The requested {props.name ?? "resource"} was not found
-          </ErrorDisplay>
+          <ErrorDisplay
+            err={`The requested ${props.name ?? "resource"} was not found`}
+          />
         </Center>
       );
     case "suspended":

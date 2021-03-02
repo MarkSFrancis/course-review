@@ -7,26 +7,28 @@ import {
 } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { isFirebaseError, FirebaseErrorDisplay } from "./FirebaseErrorDisplay";
+import { GenericErrorDisplay } from "./GenericErrorDisplay";
 
 export interface ErrorDisplayProps {
+  err: unknown;
   description?: string;
 }
 
-const ErrorContent: FC = (props) => {
-  if (isFirebaseError(props.children)) {
-    return <FirebaseErrorDisplay>{props.children}</FirebaseErrorDisplay>;
+const ErrorContent: FC<{ err: unknown }> = ({ err }) => {
+  if (isFirebaseError(err)) {
+    return <FirebaseErrorDisplay err={err} />;
   } else {
-    return <>{props.children}</>;
+    return <GenericErrorDisplay err={err} />;
   }
 };
 
-export const ErrorDisplay: FC<ErrorDisplayProps> = (props) => (
+export const ErrorDisplay: FC<ErrorDisplayProps> = ({ err, description }) => (
   <Alert variant="solid" status="error">
     <AlertIcon />
     <Box flex={1}>
-      {props.description && <AlertTitle mr={2}>{props.description}</AlertTitle>}
+      {description && <AlertTitle mr={2}>{description}</AlertTitle>}
       <AlertDescription display="block">
-        <ErrorContent>{props.children}</ErrorContent>
+        <ErrorContent err={err} />
       </AlertDescription>
     </Box>
   </Alert>

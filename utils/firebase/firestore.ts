@@ -20,6 +20,8 @@ export type WithId<T> = T & {
   id: string;
 };
 
+export const now = () => firebaseCore.firestore.Timestamp.now();
+
 export namespace firestore {
   export type Timestamp = firebaseCore.firestore.Timestamp;
   export type CollectionRef<T> = firebaseCore.firestore.CollectionReference<T>;

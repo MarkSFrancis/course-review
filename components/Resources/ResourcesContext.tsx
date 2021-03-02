@@ -1,9 +1,9 @@
 import { createContext, FC, ProviderProps, useContext } from "react";
+import { Resource } from '../../models';
 import { WithId } from '../../utils';
-import { Review } from "../Review/ReviewContext";
 
 export interface Resources {
-  resources: WithId<Review>[];
+  resources: WithId<Resource>[];
 }
 
 const initialValue: Resources = {

@@ -8,7 +8,6 @@ export enum ResourceType {
 interface ResourceBase extends AuditCreatedBy {
   url: string;
   title: string;
-  description: string;
   resourceType: ResourceType;
 }
 
