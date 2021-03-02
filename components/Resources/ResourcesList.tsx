@@ -1,7 +1,8 @@
 import { Text } from "@chakra-ui/react";
 import React, { FC } from "react";
+import { ResourceProvider } from "./ResourceContext";
 import { useResources } from "./ResourcesContext";
-import { ResourceThumbnail } from './ResourceThumbnail';
+import { ResourceThumbnail } from "./ResourceThumbnail";
 
 export const ResourceList: FC = () => {
   const { resources } = useResources();
@@ -13,7 +14,9 @@ export const ResourceList: FC = () => {
   return (
     <>
       {resources.map((r) => (
-        <ResourceThumbnail key={r.id} resource={r} />
+        <ResourceProvider value={r}>
+          <ResourceThumbnail key={r.id} />
+        </ResourceProvider>
       ))}
     </>
   );
