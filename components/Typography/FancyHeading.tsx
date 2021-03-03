@@ -1,8 +1,8 @@
-import { TextProps, Heading, forwardRef } from "@chakra-ui/react";
+import { Heading, forwardRef, HeadingProps } from "@chakra-ui/react";
 import { FancyText } from "./FancyText";
 
-export const FancyHeading = forwardRef<TextProps, "span">((props, ref) => (
-  <Heading ref={ref} {...props}>
+export const FancyHeading = forwardRef<HeadingProps, "span">((props, ref) => (
+  <Heading size="lg" ref={ref} {...props}>
     <FancyText>{props.children}</FancyText>
   </Heading>
 ));

@@ -1,19 +1,11 @@
-import { firestore } from "../../utils";
-import { createContext, FC, useContext } from "react";
+import { createContext, FC, ProviderProps, useContext } from "react";
+import { Review } from "../../models";
+import { WithId } from "../../utils";
 
-export interface Reviews {}
+const reviewContext = createContext<WithId<Review>>(undefined);
 
-export interface Review {
-  url: string;
-  title: string;  
-  addedBy: string;
-  addedOn: firestore.Timestamp;
-}
+export const useReview = () => useContext(reviewContext);
 
-const reviewContext = createContext<Reviews>({});
-
-export const useReviews = () => useContext(reviewContext);
-
-export const ReviewsProvider: FC = ({ children }) => (
-  <reviewContext.Provider value={{}}>{children}</reviewContext.Provider>
+export const ReviewProvider: FC<ProviderProps<WithId<Review>>> = (props) => (
+  <reviewContext.Provider {...props} />
 );

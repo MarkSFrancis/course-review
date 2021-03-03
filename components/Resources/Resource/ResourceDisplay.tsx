@@ -1,13 +1,16 @@
 import { Box, VStack } from "@chakra-ui/react";
 import React, { FC } from "react";
+import { FancyHeading } from "../../Typography";
 import { ResourceAudit } from "./ResourceAudit";
-import { ResourceHeading } from "./ResourceHeading";
+import { ResourceTitle } from "./ResourceTitle";
 import { ResourceLink } from "./ResourceLink";
 
-export const ResourceThumbnail: FC = () => (
-  <Box as="article" borderRadius="lg" borderWidth="1px" p={6}>
+export const ResourceDisplay: FC = () => (
+  <Box as="article">
     <VStack align="stretch" spacing={4}>
-      <ResourceHeading />
+      <FancyHeading>
+        <ResourceTitle />
+      </FancyHeading>
       <ResourceAudit />
       <ResourceLink />
     </VStack>

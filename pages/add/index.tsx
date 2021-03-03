@@ -1,4 +1,4 @@
-import { AddResource } from "../../components/AddResource";
+import { AddResource } from "../../components/Resources/AddResource";
 import { PageMeta } from "../../components/PageMeta";
 import { PageContainer } from "../../components/Layout/PageContainer";
 import { SignedInGuard } from "../../components/Auth";

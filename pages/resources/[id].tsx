@@ -1,12 +1,16 @@
 import { PageMeta } from "../../components/PageMeta";
-import { PageContainer } from '../../components/Layout/PageContainer';
-import { FancyHeading } from "../../components/Typography";
+import { PageContainer } from "../../components/Layout/PageContainer";
+import { Resource } from "../../components/Resources";
+import { useRouter } from "next/router";
 
-export default function Course() {
+export default function ResourcePage() {
+  const router = useRouter();
+  const { id } = router.query as { id: string };
+
   return (
     <PageContainer>
       <PageMeta />
-      <FancyHeading>Course View</FancyHeading>
+      <Resource id={id} />
     </PageContainer>
   );
 }

@@ -8,7 +8,7 @@ export type QueryResult<
 
 export function isDocQuery(query: Query): query is firestore.DocRef {
   const docQuery = query as firestore.DocRef;
-  if (docQuery.id) {
+  if (docQuery.collection) {
     return true;
   } else {
     return false;

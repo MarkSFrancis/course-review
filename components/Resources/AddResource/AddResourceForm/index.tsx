@@ -7,11 +7,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React, { FC, useCallback } from "react";
-import { ResourceType } from "../../../models";
+import { ResourceType } from "../../../../models";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
-import { Field, LabelledControl, LabelledInput } from "../../Forms";
-import { FetchState, FirestoreAddResult } from "../../../utils";
-import { ErrorDisplay, SuccessDisplay } from "../../Alert";
+import { Field, LabelledControl, LabelledInput } from "../../../Forms";
+import { FetchState, FirestoreAddResult } from "../../../../utils";
+import { ErrorDisplay, SuccessDisplay } from "../../../Alert";
 
 export interface NewResource {
   title: string;

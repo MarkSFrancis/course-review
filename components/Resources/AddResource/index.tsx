@@ -1,10 +1,10 @@
 import { VStack } from "@chakra-ui/react";
 import { FC, useCallback } from "react";
-import { FancyHeading } from "../Typography";
+import { FancyHeading } from "../../Typography";
 import { AddForm, NewResource } from "./AddResourceForm";
-import { Section } from "../Layout";
-import { now, useFirestoreAdd, useUser } from "../../utils";
-import { Resource } from "../../models";
+import { Section } from "../../Layout";
+import { now, useFirestoreAdd, useUser } from "../../../utils";
+import { Resource } from "../../../models";
 import { FormikHelpers } from "formik";
 
 export const AddResource: FC = () => {
