@@ -12,11 +12,13 @@ import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
 import { Field, LabelledControl, LabelledInput } from "../../../Forms";
 import { FetchState, FirestoreAddResult } from "../../../../utils";
 import { ErrorDisplay, SuccessDisplay } from "../../../Alert";
+import { TopicEditor } from "../../../Topics";
 
 export interface NewResource {
   title: string;
   resourceType: ResourceType;
   url: string;
+  topicIds: string[];
 }
 
 export interface AddFormProps {
@@ -32,6 +34,7 @@ const initialValue: NewResource = {
   resourceType: ResourceType.Course,
   title: "",
   url: "",
+  topicIds: [],
 };
 
 export const AddForm: FC<AddFormProps> = ({ onSubmit, state }) => {
@@ -93,6 +96,18 @@ export const AddForm: FC<AddFormProps> = ({ onSubmit, state }) => {
                     </HStack>
                   </RadioGroup>
                 </LabelledControl>
+              )}
+            </Field>
+            <Field name="topicIds">
+              {(formik) => (
+                <TopicEditor
+                  formik={formik}
+                  topicIds={formik.field.value || []}
+                  topicIdsChanged={(t) => {
+                    console.log('New topics', t);
+                    formik.form.setFieldValue("topicIds", t);
+                  }}
+                />
               )}
             </Field>
             <HStack>
