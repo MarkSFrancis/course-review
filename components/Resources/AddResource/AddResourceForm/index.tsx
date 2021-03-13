@@ -1,11 +1,4 @@
-import {
-  Button,
-  HStack,
-  Radio,
-  RadioGroup,
-  useCallbackRef,
-  VStack,
-} from "@chakra-ui/react";
+import { Button, HStack, Radio, RadioGroup, VStack } from "@chakra-ui/react";
 import React, { FC, useCallback } from "react";
 import { ResourceType } from "../../../../models";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
@@ -104,7 +97,6 @@ export const AddForm: FC<AddFormProps> = ({ onSubmit, state }) => {
                   formik={formik}
                   topicIds={formik.field.value || []}
                   topicIdsChanged={(t) => {
-                    console.log('New topics', t);
                     formik.form.setFieldValue("topicIds", t);
                   }}
                 />

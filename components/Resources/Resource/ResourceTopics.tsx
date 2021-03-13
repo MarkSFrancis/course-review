@@ -7,7 +7,9 @@ import { useResource } from "../ResourceContext";
 export const ResourceTopics = () => {
   const { topicIds } = useResource();
 
-  console.log({ topicIds });
+  if (!topicIds) {
+    return <></>;
+  }
 
   return (
     <TopicsProvider>
