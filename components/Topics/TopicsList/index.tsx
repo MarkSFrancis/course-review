@@ -1,4 +1,4 @@
-import { SimpleGrid, Wrap } from "@chakra-ui/layout";
+import { Wrap } from "@chakra-ui/layout";
 import { WrapItem } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { TopicDisplay } from "../TopicDisplay";

@@ -1,3 +1,3 @@
 export * from "./SignedInGuard";
 export * from "./NotSignedIn";
-export * from "./SignInButton";
+export * from "./SignInOutButton";
