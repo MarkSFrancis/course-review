@@ -21,9 +21,13 @@ export const AddResource: FC = () => {
         },
         createdOn: now(),
         ...evt,
+        topicIds: evt.topicIds.reduce(
+          (prev, t) => ({ ...prev, [t]: true }),
+          {}
+        ),
       }).finally(() => helpers.setSubmitting(false));
     },
-    []
+    [user]
   );
 
   return (

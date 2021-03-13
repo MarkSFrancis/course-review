@@ -1,13 +1,17 @@
 import { ChakraProvider, SimpleGrid } from "@chakra-ui/react";
+import React from 'react';
+import { FirebaseProvider } from '../components/FirebaseProvider';
 import { NavBar } from "../components/NavBar";
 
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
-      <SimpleGrid>
-        <NavBar />
-        <Component {...pageProps} />
-      </SimpleGrid>
+      <FirebaseProvider>
+        <SimpleGrid>
+          <NavBar />
+          <Component {...pageProps} />
+        </SimpleGrid>
+      </FirebaseProvider>
     </ChakraProvider>
   );
 }

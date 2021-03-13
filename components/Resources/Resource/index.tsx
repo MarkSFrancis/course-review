@@ -8,8 +8,8 @@ import { QueriesGuard } from "../../Query";
 import { Divider, VStack } from "@chakra-ui/react";
 import { Resource as ResourceDb, Review } from "../../../models";
 import { ResourceProvider } from "../ResourceContext";
-import { ReviewsProvider } from "../../Review/ReviewsContext";
-import { Reviews } from "../../Review";
+import { ReviewsProvider } from "../../Reviews/ReviewsContext";
+import { Reviews } from "../../Reviews";
 import { ResourceDisplay } from "./ResourceDisplay";
 
 export * from "./ResourceThumbnail";

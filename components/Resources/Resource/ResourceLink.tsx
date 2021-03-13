@@ -8,7 +8,11 @@ export const ResourceLink: FC<{ linkToDetails?: boolean }> = ({
   linkToDetails,
 }) => {
   const { url, id } = useResource();
-  const domainName = url && new URL(url).host;
+  let domainName = "their site";
+
+  try {
+    domainName = url && new URL(url).host;
+  } catch {}
 
   return (
     <Stack direction={["column", "row"]}>
