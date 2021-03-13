@@ -28,7 +28,7 @@
     "@types/node": "^14.14.32",
     "@types/react": "^17.0.3",
     "dayjs": "^1.10.4",
-    "firebase": "^8.2.10",
+    "firebase": "^8.3.0",
     "firebase-tools": "^9.5.0",
     "formik": "^2.2.6",
     "rxjs": "^6.6.6",
