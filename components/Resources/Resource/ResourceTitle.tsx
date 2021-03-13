@@ -1,4 +1,5 @@
 import { HStack } from "@chakra-ui/layout";
+import { Stack } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { FancyHeading, SecondaryHeading } from "../../Typography";
 import { useResource } from "../ResourceContext";
@@ -12,13 +13,13 @@ export const ResourceTitle: FC<ResourceTitleProps> = (props) => {
   const { title } = useResource();
 
   return (
-    <HStack justifyContent="space-between">
+    <Stack direction={["column", "row"]} justifyContent="space-between">
       {props.fancy ? (
         <FancyHeading>{title}</FancyHeading>
       ) : (
         <SecondaryHeading>{title}</SecondaryHeading>
       )}
       <ResourceTopics />
-    </HStack>
+    </Stack>
   );
 };
