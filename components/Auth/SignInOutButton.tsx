@@ -1,10 +1,10 @@
 import { Button, ButtonProps, forwardRef } from "@chakra-ui/react";
-import React, { useCallback, MouseEvent, useState, useEffect } from "react";
+import React, { useCallback, MouseEvent } from "react";
 import { auth, microsoftAuthProvider, useUser } from "../../utils";
 import { useSafeState } from "../../utils/hooks/useSafeState";
 import { MicrosoftLogo } from "../Logo";
 
-export const SignInButton = forwardRef<ButtonProps, typeof Button>(
+export const SignInOutButton = forwardRef<ButtonProps, typeof Button>(
   (props, ref) => {
     const [isChangingState, setIsChangingState] = useSafeState(false);
     const user = useUser();
