@@ -11,6 +11,7 @@ import { ResourceProvider } from "../ResourceContext";
 import { ReviewsProvider } from "../../Reviews/ReviewsContext";
 import { Reviews } from "../../Reviews";
 import { ResourceDisplay } from "./ResourceDisplay";
+import { SkeletonResource } from "./SkeletonResource";
 
 export * from "./ResourceThumbnail";
 
@@ -28,22 +29,22 @@ export const Resource: FC<ResourceProps> = (props) => {
   );
 
   return (
-    <Section>
-      <VStack spacing={4} align="stretch">
-        <QueriesGuard queries={[queryResource, queryReviews] as const}>
-          {({ value: resource }, { value: reviews }) => (
-            <>
-              <ResourceProvider value={resource}>
-                <ResourceDisplay />
-              </ResourceProvider>
-              <Divider />
+    <VStack spacing={4} align="stretch">
+      <QueriesGuard
+        queries={[queryResource, queryReviews] as const}
+        spinner={<SkeletonResource />}
+      >
+        {({ value: resource }, { value: reviews }) => (
+          <>
+            <ResourceProvider value={resource}>
               <ReviewsProvider value={{ reviews }}>
+                <ResourceDisplay />
                 <Reviews reviews={reviews} />
               </ReviewsProvider>
-            </>
-          )}
-        </QueriesGuard>
-      </VStack>
-    </Section>
+            </ResourceProvider>
+          </>
+        )}
+      </QueriesGuard>
+    </VStack>
   );
 };

@@ -1,7 +1,7 @@
 import { VStack } from "@chakra-ui/react";
 import { FC, useCallback } from "react";
 import { FancyHeading } from "../../Typography";
-import { AddForm, NewResource } from "./AddResourceForm";
+import { AddResourceForm, NewResource } from "./AddResourceForm";
 import { Section } from "../../Layout";
 import { now, useFirestoreAdd, useUser } from "../../../utils";
 import { Resource } from "../../../models";
@@ -34,7 +34,7 @@ export const AddResource: FC = () => {
     <Section>
       <VStack spacing={4} align="stretch">
         <FancyHeading>Add a resource</FancyHeading>
-        <AddForm onSubmit={publishResource} state={publishState} />
+        <AddResourceForm onSubmit={publishResource} state={publishState} />
       </VStack>
     </Section>
   );

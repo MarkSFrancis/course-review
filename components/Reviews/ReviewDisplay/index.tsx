@@ -1,6 +1,8 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { AuditCreated } from "../../Audit";
+import { RichInputPreview } from "../../Forms/RichInput";
+import { Rating } from "../Rating";
 import { useReview } from "../ReviewContext";
 
 export const ReviewDisplay: FC = () => {
@@ -18,8 +20,8 @@ export const ReviewDisplay: FC = () => {
             )}
           </AuditCreated>
         </Text>
-        <Text>{review.rating}</Text>
-        <Text>{review.details}</Text>
+        <Rating rating={review.rating} />
+        <RichInputPreview value={review.details} />
       </VStack>
     </Box>
   );
