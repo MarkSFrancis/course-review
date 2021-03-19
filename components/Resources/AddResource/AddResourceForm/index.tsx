@@ -2,7 +2,7 @@ import { Button, HStack, Radio, RadioGroup, VStack } from "@chakra-ui/react";
 import React, { FC, useCallback } from "react";
 import { ResourceType } from "../../../../models";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
-import { Field, LabelledControl, LabelledInput } from "../../../Forms";
+import { Field, FieldInput } from "../../../Forms";
 import { FetchState, FirestoreAddResult } from "../../../../utils";
 import { ErrorDisplay, SuccessDisplay } from "../../../Alert";
 import { TopicEditor } from "../../../Topics";
@@ -14,7 +14,7 @@ export interface NewResource {
   topicIds: string[];
 }
 
-export interface AddFormProps {
+export interface AddResourceFormProps {
   onSubmit: (
     value: NewResource,
     helpers: FormikHelpers<NewResource>
@@ -30,7 +30,10 @@ const initialValue: NewResource = {
   topicIds: [],
 };
 
-export const AddForm: FC<AddFormProps> = ({ onSubmit, state }) => {
+export const AddResourceForm: FC<AddResourceFormProps> = ({
+  onSubmit,
+  state,
+}) => {
   const validate = useCallback(
     (value: NewResource): FormikErrors<NewResource> => {
       let errors: FormikErrors<NewResource> = {};
@@ -64,40 +67,28 @@ export const AddForm: FC<AddFormProps> = ({ onSubmit, state }) => {
                 Your new resource has been published. Thank you for sharing!
               </SuccessDisplay>
             )}
-            <Field name="url">
+            <FieldInput name="url" label="Url" isRequired autoFocus />
+            <FieldInput name="title" label="Title" isRequired />
+            <Field name="resourceType" label="Resource type">
               {(formik) => (
-                <LabelledInput
-                  formik={formik}
-                  label="Url"
-                  isRequired
-                  autoFocus
-                />
+                <RadioGroup
+                  defaultValue="Course"
+                  {...formik.field}
+                  onChange={formik.setValue}
+                >
+                  <HStack spacing={4}>
+                    <Radio value="Course">Course</Radio>
+                    <Radio value="Blog">Blog</Radio>
+                  </HStack>
+                </RadioGroup>
               )}
             </Field>
-            <Field name="title">
-              {(formik) => (
-                <LabelledInput label="Title" formik={formik} isRequired />
-              )}
-            </Field>
-            <Field name="resourceType">
-              {(formik) => (
-                <LabelledControl label="Resource type" formik={formik}>
-                  <RadioGroup defaultValue="Course" id={formik.field.name}>
-                    <HStack spacing={4}>
-                      <Radio value="Course">Course</Radio>
-                      <Radio value="Blog">Blog</Radio>
-                    </HStack>
-                  </RadioGroup>
-                </LabelledControl>
-              )}
-            </Field>
-            <Field name="topicIds">
+            <Field name="topicIds" label="Topics">
               {(formik) => (
                 <TopicEditor
-                  formik={formik}
                   topicIds={formik.field.value || []}
                   topicIdsChanged={(t) => {
-                    formik.form.setFieldValue("topicIds", t);
+                    formik.setValue(t);
                   }}
                 />
               )}

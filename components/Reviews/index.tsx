@@ -1,7 +1,11 @@
+import { Divider } from "@chakra-ui/layout";
+import { VStack } from "@chakra-ui/react";
 import React, { FC } from "react";
 import { Review } from "../../models";
 import { WithId } from "../../utils";
+import { Section } from "../Layout";
 import { SecondaryHeading } from "../Typography";
+import { AddReview } from "./AddReview";
 import { ReviewsProvider } from "./ReviewsContext";
 import { ReviewsList } from "./ReviewsList";
 
@@ -11,11 +15,15 @@ export interface ReviewProps {
 
 export const Reviews: FC<ReviewProps> = ({ reviews }) => {
   return (
-    <>
-      <SecondaryHeading>Reviews</SecondaryHeading>
+    <Section>
       <ReviewsProvider value={{ reviews }}>
-        <ReviewsList />
+        <VStack spacing={3} align="stretch">
+          <SecondaryHeading>Reviews</SecondaryHeading>
+          <ReviewsList />
+
+          <AddReview />
+        </VStack>
       </ReviewsProvider>
-    </>
+    </Section>
   );
 };

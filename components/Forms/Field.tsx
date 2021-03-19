@@ -1,23 +1,24 @@
-import {
-  Field as FormikField,
-  FieldConfig,
-  FieldInputProps,
-  FieldMetaProps,
-  FormikProps,
-} from "formik";
-import { forwardRef } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import { FieldConfig } from "formik";
+import React, { FC } from "react";
+import { FormikField } from "./FormikField";
+import { LabelledControl } from "./LabelledControl";
+import { FieldChildren, FormikChildren } from "./types";
 
-export interface FieldChildren<V = any, FormValues = any> {
-  field: FieldInputProps<V>;
-  form: FormikProps<FormValues>;
-  meta: FieldMetaProps<V>;
+export interface FieldProps<V = any, FormValues = any>
+  extends Omit<FieldConfig, "as"> {
+  children: FormikChildren<V, FormValues>;
+  label?: string;
+  isRequired?: boolean;
 }
 
-export interface FieldProps<V = any, FormValues = any> extends FieldConfig {
-  children: (props: FieldChildren<V, FormValues>) => ReactNode;
-}
+export const Field: FC<FieldProps> = (props) => {
+  const { children, label, isRequired, ...fieldProps } = props;
 
-export const Field = forwardRef<FieldProps, typeof FormikField>(
-  (props, ref) => <FormikField ref={ref} {...props} />
-);
+  return (
+    <FormikField {...fieldProps}>
+      <LabelledControl label={label} isRequired={isRequired}>
+        <FieldChildren>{children}</FieldChildren>
+      </LabelledControl>
+    </FormikField>
+  );
+};

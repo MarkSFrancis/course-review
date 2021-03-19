@@ -6,6 +6,7 @@ import { ErrorDisplay } from "../Alert";
 export interface QueryGuardProps<T> {
   query: QueryState<T>;
   name?: string;
+  spinner?: ReactElement;
   children?:
     | ReactElement
     | null
@@ -16,9 +17,11 @@ export function QueryGuard<T>(props: QueryGuardProps<T>): ReactElement {
   switch (props.query.state) {
     case "loading":
       return (
-        <Center>
-          <Spinner />
-        </Center>
+        props.spinner ?? (
+          <Center>
+            <Spinner />
+          </Center>
+        )
       );
     case "error":
       return (

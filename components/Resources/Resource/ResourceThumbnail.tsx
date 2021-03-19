@@ -3,13 +3,14 @@ import React, { FC } from "react";
 import { ResourceAudit } from "./ResourceAudit";
 import { ResourceTitle } from "./ResourceTitle";
 import { ResourceLink } from "./ResourceLink";
+import { Section } from '../../Layout';
 
 export const ResourceThumbnail: FC = () => (
-  <Box as="article" borderRadius="lg" borderWidth="1px" p={6}>
-    <VStack align="stretch" spacing={4}>
-      <ResourceTitle />
-      <ResourceAudit />
-      <ResourceLink linkToDetails />
-    </VStack>
-  </Box>
+  <Section as="article">
+      <VStack align="stretch" spacing={4}>
+        <ResourceTitle />
+        <ResourceAudit />
+        <ResourceLink linkToDetails />
+      </VStack>
+  </Section>
 );

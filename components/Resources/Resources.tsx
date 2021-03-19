@@ -7,6 +7,7 @@ import { QueryGuard } from "../Query";
 import { FancyHeading } from "../Typography";
 import { VStack } from "@chakra-ui/react";
 import { Resource } from "../../models";
+import { SkeletonResource } from './Resource/SkeletonResource';
 
 export const Resources = () => {
   const query = useFirestoreQueryCollection<Resource>((db) =>
@@ -17,7 +18,7 @@ export const Resources = () => {
     <Section>
       <VStack spacing={4} align="stretch">
         <FancyHeading>Resources</FancyHeading>
-        <QueryGuard query={query}>
+        <QueryGuard spinner={<SkeletonResource />} query={query}>
           {({ value }) => (
             <ResourcesProvider value={{ resources: value }}>
               <ResourceList />

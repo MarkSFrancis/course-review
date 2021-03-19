@@ -1,5 +1,6 @@
-import { Text } from "@chakra-ui/react";
+import { Text, VStack } from "@chakra-ui/react";
 import React, { FC } from "react";
+import { Section } from "../Layout";
 import { ReviewProvider } from "./ReviewContext";
 import { ReviewDisplay } from "./ReviewDisplay";
 import { useReviews } from "./ReviewsContext";
@@ -12,12 +13,14 @@ export const ReviewsList: FC = () => {
   }
 
   return (
-    <>
+    <VStack spacing={3} align="stretch">
       {reviews.map((r) => (
         <ReviewProvider key={r.id} value={r}>
-          <ReviewDisplay />
+          <Section>
+            <ReviewDisplay />
+          </Section>
         </ReviewProvider>
       ))}
-    </>
+    </VStack>
   );
 };

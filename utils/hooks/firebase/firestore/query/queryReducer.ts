@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useFirebaseApp } from "../../../../../components/FirebaseProvider/FirebaseProvider";
 import { Query, QueryResult } from "./queryTypeHelpers";
 import { QueryState } from "./state";
+import { useQueryCached } from "./useQueryCached";
 
 export const useFirestoreQueryReducer = <T, TQuery extends Query>(
   query: TQuery
@@ -11,14 +12,15 @@ export const useFirestoreQueryReducer = <T, TQuery extends Query>(
     previousValue: undefined,
   });
 
+  const cachedQuery = useQueryCached(query);
   const { queries } = useFirebaseApp();
 
   useEffect(
     () =>
-      queries.subscribe(query, (state) =>
+      queries.subscribe(cachedQuery, (state) =>
         setState(state as QueryState<QueryResult<T, TQuery>>)
       ),
-    []
+    [cachedQuery]
   );
 
   return state as QueryState<QueryResult<T, TQuery>>;

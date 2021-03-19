@@ -2,13 +2,11 @@ import { HStack } from "@chakra-ui/layout";
 import React, { FC, useCallback } from "react";
 import { Topic } from "../../../models";
 import { WithId } from "../../../utils";
-import { FieldChildren, LabelledControl } from "../../Forms";
 import { TopicDisplay } from "../TopicDisplay";
 import { TopicsProvider } from "../TopicsContext";
 import { AddTopic } from "./AddTopic";
 
 export interface TopicEditorProps {
-  formik: FieldChildren;
   topicIds: string[];
   topicIdsChanged: (newTopicIds: string[]) => void;
 }
@@ -30,14 +28,12 @@ export const TopicEditor: FC<TopicEditorProps> = (props) => {
 
   return (
     <TopicsProvider>
-      <LabelledControl label="Topics" formik={props.formik}>
-        <HStack>
-          {props.topicIds.map((t) => (
-            <TopicDisplay key={t} id={t} onDelete={() => removeTopic(t)} />
-          ))}
-          <AddTopic onAdd={addTopic} />
-        </HStack>
-      </LabelledControl>
+      <HStack>
+        {props.topicIds.map((t) => (
+          <TopicDisplay key={t} id={t} onDelete={() => removeTopic(t)} />
+        ))}
+        <AddTopic onAdd={addTopic} />
+      </HStack>
     </TopicsProvider>
   );
 };

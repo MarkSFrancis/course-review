@@ -6,6 +6,7 @@ import { ErrorDisplay } from "../Alert";
 export interface QueriesGuardProps<T extends Readonly<any[]>> {
   queries: QueryStateArray<T>;
   name?: string;
+  spinner?: ReactElement;
   children?:
     | ReactElement
     | null
@@ -20,9 +21,11 @@ export function QueriesGuard<T extends Readonly<any[]>>(
 ): ReactElement {
   if (props.queries.find((q) => q.state === "loading")) {
     return (
-      <Center>
-        <Spinner />
-      </Center>
+      props.spinner ?? (
+        <Center>
+          <Spinner />
+        </Center>
+      )
     );
   }
 
