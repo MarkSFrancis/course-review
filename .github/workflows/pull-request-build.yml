@@ -1,5 +1,5 @@
 name: Deploy to testing environment
-on: pull_request_target
+on: pull_request
 
 jobs:
   build_and_preview:
