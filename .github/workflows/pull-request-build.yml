@@ -3,6 +3,7 @@ on: pull_request_target
 
 jobs:
   build_and_preview:
+    if: ${{ github.actor == 'dependabot[bot]' || github.actor == github.repository_owner }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -11,7 +12,6 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: yarn build:prod
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: ${{ github.actor == 'dependabot[bot]' || github.actor == github.repository_owner }}
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COURSE_REVIEW_CD378 }}'
