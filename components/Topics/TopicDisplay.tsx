@@ -1,6 +1,6 @@
 import { Tag, TagCloseButton, TagLabel, TagProps } from "@chakra-ui/tag";
 import { FC, useEffect, useState } from "react";
-import { getForegroundColor } from '../../utils';
+import { getForegroundColor } from "../../utils";
 import { useTopics } from "./TopicsContext";
 
 export interface TopicDisplayProps {
@@ -26,7 +26,11 @@ export const TopicDisplay: FC<TopicDisplayProps & TagProps> = (props) => {
   const textColor = topic && getForegroundColor(topic.color);
 
   return (
-    <Tag background={topic.color} color={textColor} {...tagProps}>
+    <Tag
+      background={topic.color}
+      color={textColor?.rgb().toString()}
+      {...tagProps}
+    >
       <TagLabel>{topic.name}</TagLabel>
       {tagProps.children}
       {onDelete && <TagCloseButton onClick={() => onDelete()} />}
