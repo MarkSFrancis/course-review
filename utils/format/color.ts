@@ -11,9 +11,9 @@ export const getForegroundColor = <T extends ColorParam>(
   backgroundColor: T
 ) => {
   if (toColor(backgroundColor).isLight()) {
-    return "rgb(0, 0, 0)";
+    return toColor('black');
   } else {
-    return "rgb(255, 255, 255)";
+    return toColor('white');
   }
 };
 

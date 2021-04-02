@@ -11,10 +11,11 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn --frozen-lockfile
       - run: yarn build:prod
+      - run: yarn test
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COURSE_REVIEW_CD378 }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COURSE_REVIEW_CD378 }}"
           channelId: live
           projectId: course-review-cd378
         env:

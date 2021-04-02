@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { useIsMounted } from "./useIsMounted";
 
 /**
- * Returns a stateful value, and a function to update it. If the component is unmounted, the state is not updated. 
- * 
+ * Returns a stateful value, and a function to update it. If the component is unmounted, the state is not updated.
+ *
  * Use this if you're using async callbacks, and you cannot cleanly cancel or unsubscribe from the async callback
  */
 export const useSafeState = <S>(
