@@ -1,7 +1,6 @@
-export interface FetchFailedState<T> {
+export interface FetchFailedState {
   state: "error";
   error: unknown;
-  previousValue: T | undefined;
 }
 
 export interface FetchSuccessState<T> {
@@ -9,18 +8,16 @@ export interface FetchSuccessState<T> {
   value: T;
 }
 
-export interface FetchLoadingState<T> {
+export interface FetchLoadingState {
   state: "loading";
-  previousValue: T | undefined;
 }
 
-export interface FetchSuspendedState<T> {
+export interface FetchSuspendedState {
   state: "suspended";
-  previousValue: T | undefined;
 }
 
 export type FetchState<T> =
   | FetchSuccessState<T>
-  | FetchLoadingState<T>
-  | FetchFailedState<T>
-  | FetchSuspendedState<T>;
+  | FetchLoadingState
+  | FetchFailedState
+  | FetchSuspendedState;
