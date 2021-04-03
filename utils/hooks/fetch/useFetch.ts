@@ -2,31 +2,25 @@ import { useCallback, useEffect, useReducer } from "react";
 import { FetchState } from "./state";
 
 const fetchReducer = <T>(
-  state: FetchState<T>,
+  _state: FetchState<T>,
   action: {
     type: FetchState<T>["state"];
     payload: unknown;
   }
 ): FetchState<T> => {
-  const previousValue =
-    state.state === "success" ? state.value : state.previousValue;
-
   switch (action.type) {
     case "loading":
       return {
         state: "loading",
-        previousValue,
       };
     case "error":
       return {
         state: "error",
         error: action.payload,
-        previousValue,
       };
     case "suspended":
       return {
         state: "suspended",
-        previousValue,
       };
     case "success":
       return {
@@ -42,11 +36,10 @@ export const useFetch = <
   TResponse = Response
 >(
   func: (...params: TParams) => Promise<TResponse> | TResponse,
-  responseHandler: (response: TResponse) => Promise<TResult> | TResult
+  formatter: (response: TResponse) => Promise<TResult> | TResult
 ) => {
   const [reducer, dispatch] = useReducer(fetchReducer, {
     state: "suspended",
-    previousValue: undefined,
   });
 
   const trigger = useCallback(async (...params: TParams) => {
@@ -58,7 +51,7 @@ export const useFetch = <
     let result: TResult;
     try {
       const response = await func(...params);
-      result = await responseHandler(response);
+      result = await formatter(response);
 
       dispatch({
         type: "success",

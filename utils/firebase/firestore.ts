@@ -1,6 +1,6 @@
 import { firebase } from "./firebase";
 import "firebase/firestore";
-import { isDevMode } from "../isDevMode";
+import { isDevMode } from "../mode";
 import firebaseCore from "firebase/app";
 
 const firestoreDb = firebase.firestore();
