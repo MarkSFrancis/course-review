@@ -1,14 +1,13 @@
 import { db as fireDb } from "../../../../firebase/firestore";
-import { Query } from './queryTypeHelpers';
+import { Query } from "./queryTypeHelpers";
 
 export type FirebaseQueryBuilder<TQuery extends Query> = (
   db: typeof fireDb
 ) => TQuery;
 
-export interface QueryFailedState<T> {
+export interface QueryFailedState {
   state: "error";
   error: unknown;
-  previousValue: T | null | undefined;
 }
 
 export interface QuerySuccessState<T> {
@@ -16,24 +15,16 @@ export interface QuerySuccessState<T> {
   value: T;
 }
 
-export interface QueryNotFoundState<T> {
+export interface QueryNotFoundState {
   state: "notFound";
-  previousValue: T | null | undefined;
 }
 
-export interface QueryLoadingState<T> {
+export interface QueryLoadingState {
   state: "loading";
-  previousValue: T | null | undefined;
-}
-
-export interface QuerySuspendedState<T> {
-  state: "suspended";
-  previousValue: T | null | undefined;
 }
 
 export type QueryState<T> =
   | QuerySuccessState<T>
-  | QueryLoadingState<T>
-  | QueryFailedState<T>
-  | QueryNotFoundState<T>
-  | QuerySuspendedState<T>;
+  | QueryLoadingState
+  | QueryFailedState
+  | QueryNotFoundState;

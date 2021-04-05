@@ -1,7 +1,7 @@
 import { ResourcesProvider } from "./ResourcesContext";
 import { ResourceList } from "./ResourcesList";
 import React from "react";
-import { useFirestoreQueryCollection } from "../../utils";
+import { useFirestoreCollection } from "../../utils";
 import { Section } from "../Layout";
 import { QueryGuard } from "../Query";
 import { FancyHeading } from "../Typography";
@@ -10,7 +10,7 @@ import { Resource } from "../../models";
 import { SkeletonResource } from './Resource/SkeletonResource';
 
 export const Resources = () => {
-  const query = useFirestoreQueryCollection<Resource>((db) =>
+  const query = useFirestoreCollection<Resource>((db) =>
     db.collection("resources").orderBy("createdOn", "desc").limit(20)
   );
 

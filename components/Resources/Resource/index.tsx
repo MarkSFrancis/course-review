@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import {
-  useFirestoreQueryCollection,
-  useFirestoreQueryDoc,
+  useFirestoreCollection,
+  useFirestoreDoc,
 } from "../../../utils";
 import { Section } from "../../Layout";
 import { QueriesGuard } from "../../Query";
@@ -20,11 +20,11 @@ export interface ResourceProps {
 }
 
 export const Resource: FC<ResourceProps> = (props) => {
-  const queryResource = useFirestoreQueryDoc<ResourceDb>((db) =>
+  const queryResource = useFirestoreDoc<ResourceDb>((db) =>
     db.doc(`resources/${props.id}`)
   );
 
-  const queryReviews = useFirestoreQueryCollection<Review>((db) =>
+  const queryReviews = useFirestoreCollection<Review>((db) =>
     db.collection(`resources/${props.id}/reviews`)
   );
 
