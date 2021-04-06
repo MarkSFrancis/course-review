@@ -5,7 +5,7 @@ import {
   QueryState,
   QuerySuccessState,
 } from "../../../utils";
-import { queryStateAsSubject } from "./reducer";
+import { queryStateAsSubject } from "./queryReducer";
 
 describe("queryStateAsSubject", () => {
   afterEach(() => {

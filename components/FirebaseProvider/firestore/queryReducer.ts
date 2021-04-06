@@ -2,14 +2,14 @@ import { BehaviorSubject } from "rxjs";
 import { QueryState } from "../../../utils";
 import { createCounterSubject } from './subscribable';
 
-interface ReducerAction<T> {
+export interface QueryReducerAction<T> {
   type: QueryState<T>["state"];
   payload: unknown;
 }
 
 const reducer = <T>(
   _state: QueryState<T>,
-  action: ReducerAction<T>
+  action: QueryReducerAction<T>
 ): QueryState<T> => {
   switch (action.type) {
     case "loading":
@@ -37,7 +37,7 @@ const reducer = <T>(
 export const queryStateAsSubject = <T>(initialValue: QueryState<T>) => {
   const reducedSubject = new BehaviorSubject<QueryState<T>>(initialValue);
 
-  const dispatch = (action: ReducerAction<T>) => {
+  const dispatch = (action: QueryReducerAction<T>) => {
     reducedSubject.next(reducer(reducedSubject.value, action));
   };
 

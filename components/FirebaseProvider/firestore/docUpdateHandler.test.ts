@@ -1,11 +1,10 @@
-import {
-  firestore,
-  QueryFailedState,
-  QueryState,
-  QuerySuccessState,
-  WithId,
-} from "../../../utils";
+import { mocked } from "ts-jest/utils";
+import { firestore, QueryLoadingState, WithId } from "../../../utils";
 import { collectionUpdateHandler } from "./collectionUpdateHandler";
+import { QueryReducerAction, queryStateAsSubject } from "./queryReducer";
+
+jest.mock("./queryReducer");
+const queryStateAsSubjectMock = mocked(queryStateAsSubject);
 
 const createQuery = <T>(destroyHandler?: () => void) => {
   let nextHandlers: ((
@@ -44,49 +43,58 @@ const createQuery = <T>(destroyHandler?: () => void) => {
   };
 };
 
-describe("collectionUpdateHandler", () => {
+describe("docUpdateHandler", () => {
+  const dispatchFn = jest.fn();
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+    queryStateAsSubjectMock.mockReturnValue({
+      dispatch: dispatchFn,
+      subject: {
+        subscribe: () => ({
+          unsubscribe: jest.fn(),
+        }),
+        totalListeners: 0,
+      },
+    });
+  });
+
   it("should set the initial value to loading", () => {
     const { query } = createQuery();
 
-    const subscription = collectionUpdateHandler(query);
+    collectionUpdateHandler(query);
 
-    const sub = jest.fn();
-    subscription.subscribe(sub);
-
-    expect(sub).toHaveBeenCalledTimes(1);
-    expect(sub).toHaveBeenCalledWith<[QueryState<unknown>]>({
+    expect(queryStateAsSubjectMock).toHaveBeenCalledTimes(1);
+    expect(queryStateAsSubjectMock).toHaveBeenCalledWith<[QueryLoadingState]>({
       state: "loading",
     });
   });
 
   it("should tear down the query when destroyed", () => {
-    const destroy = jest.fn();
-    const { query } = createQuery(destroy);
+    const destroyListenerFn = jest.fn();
+    const { query } = createQuery(destroyListenerFn);
 
-    const subscription = collectionUpdateHandler(query);
+    const { destroy } = collectionUpdateHandler(query);
 
-    subscription.destroy();
+    destroy();
 
-    expect(destroy).toHaveBeenCalledTimes(1);
+    expect(destroyListenerFn).toHaveBeenCalledTimes(1);
   });
 
   it("should emit success when no records are found", () => {
     const { query, emitNext } = createQuery();
 
-    const subscription = collectionUpdateHandler(query);
-
-    const fn = jest.fn();
-    subscription.subscribe(fn);
+    collectionUpdateHandler(query);
 
     emitNext({
       docs: [],
       empty: true,
     } as firestore.CollectionSnapshot<unknown>);
 
-    expect(fn).toHaveBeenCalledTimes(2);
-    expect(fn).toHaveBeenNthCalledWith<[QuerySuccessState<unknown>]>(2, {
-      state: "success",
-      value: [],
+    expect(dispatchFn).toHaveBeenCalledTimes(1);
+    expect(dispatchFn).toHaveBeenCalledWith<[QueryReducerAction<unknown>]>({
+      payload: [],
+      type: "success",
     });
   });
 
@@ -94,10 +102,7 @@ describe("collectionUpdateHandler", () => {
     type DbType = { text: string };
     const { query, emitNext } = createQuery<DbType>();
 
-    const subscription = collectionUpdateHandler(query);
-
-    const fn = jest.fn();
-    subscription.subscribe(fn);
+    collectionUpdateHandler(query);
 
     const value: WithId<DbType> = {
       id: "1234",
@@ -115,23 +120,19 @@ describe("collectionUpdateHandler", () => {
       ],
     } as firestore.CollectionSnapshot<DbType>);
 
-    expect(fn).toHaveBeenCalledTimes(2);
-    expect(fn).toHaveBeenNthCalledWith<[QuerySuccessState<WithId<DbType>[]>]>(
-      2,
-      {
-        state: "success",
-        value: [value],
-      }
-    );
+    expect(dispatchFn).toHaveBeenCalledTimes(1);
+    expect(dispatchFn).toHaveBeenCalledWith<
+      [QueryReducerAction<WithId<DbType>[]>]
+    >({
+      type: "success",
+      payload: [value],
+    });
   });
 
   it("should emit an error when the query emits an error", () => {
     const { query, emitError } = createQuery();
 
-    const subscription = collectionUpdateHandler(query);
-
-    const fn = jest.fn();
-    subscription.subscribe(fn);
+    collectionUpdateHandler(query);
 
     const error: firestore.Error = {
       code: "Test code",
@@ -141,10 +142,10 @@ describe("collectionUpdateHandler", () => {
 
     emitError(error);
 
-    expect(fn).toHaveBeenCalledTimes(2);
-    expect(fn).toHaveBeenNthCalledWith<[QueryFailedState]>(2, {
-      state: "error",
-      error,
+    expect(dispatchFn).toHaveBeenCalledTimes(1);
+    expect(dispatchFn).toHaveBeenCalledWith<[QueryReducerAction<unknown>]>({
+      type: "error",
+      payload: error,
     });
   });
 });

@@ -1,5 +1,5 @@
 import { firestore, WithId } from "../../../utils";
-import { queryStateAsSubject } from "./reducer";
+import { queryStateAsSubject } from "./queryReducer";
 import { SubscribableQuery } from "./subscribable";
 
 export const docUpdateHandler = <T>(

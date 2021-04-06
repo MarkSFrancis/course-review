@@ -1,12 +1,10 @@
-import {
-  firestore,
-  QueryFailedState,
-  QueryNotFoundState,
-  QueryState,
-  QuerySuccessState,
-  WithId,
-} from "../../../utils";
+import { mocked } from "ts-jest/utils";
+import { firestore, QueryLoadingState, WithId } from "../../../utils";
 import { docUpdateHandler } from "./docUpdateHandler";
+import { QueryReducerAction, queryStateAsSubject } from "./queryReducer";
+
+jest.mock("./queryReducer");
+const queryStateAsSubjectMock = mocked(queryStateAsSubject);
 
 const createQuery = <T>(destroyHandler?: () => void) => {
   let nextHandlers: ((snapshot: firestore.DocSnapshot<T>) => void)[] = [];
@@ -42,47 +40,57 @@ const createQuery = <T>(destroyHandler?: () => void) => {
   };
 };
 
-describe("docUpdateHandler", () => {
+describe("collectionUpdateHandler", () => {
+  const dispatchFn = jest.fn();
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+    queryStateAsSubjectMock.mockReturnValue({
+      dispatch: dispatchFn,
+      subject: {
+        subscribe: () => ({
+          unsubscribe: jest.fn(),
+        }),
+        totalListeners: 0,
+      },
+    });
+  });
+
   it("should set the initial value to loading", () => {
     const { query } = createQuery();
 
-    const subscription = docUpdateHandler(query);
+    docUpdateHandler(query);
 
-    const sub = jest.fn();
-    subscription.subscribe(sub);
-
-    expect(sub).toHaveBeenCalledTimes(1);
-    expect(sub).toHaveBeenCalledWith<[QueryState<unknown>]>({
+    expect(queryStateAsSubjectMock).toHaveBeenCalledTimes(1);
+    expect(queryStateAsSubjectMock).toHaveBeenCalledWith<[QueryLoadingState]>({
       state: "loading",
     });
   });
 
   it("should tear down the query when destroyed", () => {
-    const destroy = jest.fn();
-    const { query } = createQuery(destroy);
+    const destroyListenerFn = jest.fn();
+    const { query } = createQuery(destroyListenerFn);
 
-    const subscription = docUpdateHandler(query);
+    const { destroy } = docUpdateHandler(query);
 
-    subscription.destroy();
+    destroy();
 
-    expect(destroy).toHaveBeenCalledTimes(1);
+    expect(destroyListenerFn).toHaveBeenCalledTimes(1);
   });
 
   it("should emit notFound when the record does not exist", () => {
     const { query, emitNext } = createQuery();
 
-    const subscription = docUpdateHandler(query);
-
-    const fn = jest.fn();
-    subscription.subscribe(fn);
+    docUpdateHandler(query);
 
     emitNext({
       exists: false,
     } as firestore.DocSnapshot<unknown>);
 
-    expect(fn).toHaveBeenCalledTimes(2);
-    expect(fn).toHaveBeenNthCalledWith<[QueryNotFoundState]>(2, {
-      state: "notFound",
+    expect(dispatchFn).toHaveBeenCalledTimes(1);
+    expect(dispatchFn).toHaveBeenCalledWith<[QueryReducerAction<unknown>]>({
+      type: "notFound",
+      payload: undefined,
     });
   });
 
@@ -90,10 +98,7 @@ describe("docUpdateHandler", () => {
     type DbType = { text: string };
     const { query, emitNext } = createQuery<DbType>();
 
-    const subscription = docUpdateHandler(query);
-
-    const fn = jest.fn();
-    subscription.subscribe(fn);
+    docUpdateHandler(query);
 
     const value: WithId<DbType> = {
       id: "1234",
@@ -108,20 +113,19 @@ describe("docUpdateHandler", () => {
       }),
     } as firestore.DocSnapshot<DbType>);
 
-    expect(fn).toHaveBeenCalledTimes(2);
-    expect(fn).toHaveBeenNthCalledWith<[QuerySuccessState<WithId<DbType>>]>(2, {
-      state: "success",
-      value,
+    expect(dispatchFn).toHaveBeenCalledTimes(1);
+    expect(dispatchFn).toHaveBeenCalledWith<
+      [QueryReducerAction<WithId<DbType>>]
+    >({
+      type: "success",
+      payload: value,
     });
   });
 
   it("should emit an error when the query emits an error", () => {
     const { query, emitError } = createQuery();
 
-    const subscription = docUpdateHandler(query);
-
-    const fn = jest.fn();
-    subscription.subscribe(fn);
+    docUpdateHandler(query);
 
     const error: firestore.Error = {
       code: "Test code",
@@ -131,10 +135,10 @@ describe("docUpdateHandler", () => {
 
     emitError(error);
 
-    expect(fn).toHaveBeenCalledTimes(2);
-    expect(fn).toHaveBeenNthCalledWith<[QueryFailedState]>(2, {
-      state: "error",
-      error,
+    expect(dispatchFn).toHaveBeenCalledTimes(1);
+    expect(dispatchFn).toHaveBeenCalledWith<[QueryReducerAction<unknown>]>({
+      type: "error",
+      payload: error,
     });
   });
 });
