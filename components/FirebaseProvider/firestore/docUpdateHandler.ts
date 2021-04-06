@@ -1,10 +1,11 @@
 import { firestore, WithId } from "../../../utils";
-import { queryAsSubject } from "./reducer";
+import { queryStateAsSubject } from "./reducer";
+import { SubscribableQuery } from "./subscribable";
 
-export const docUpdateHandler = <T, TQuery extends firestore.DocRef>(
-  query: TQuery
-) => {
-  const { subject, dispatch } = queryAsSubject<T>({ state: "loading" });
+export const docUpdateHandler = <T>(
+  query: firestore.DocRef
+): SubscribableQuery<T> => {
+  const { subject, dispatch } = queryStateAsSubject<T>({ state: "loading" });
 
   const destroy = query.onSnapshot(
     (ref) => {
@@ -28,5 +29,5 @@ export const docUpdateHandler = <T, TQuery extends firestore.DocRef>(
     }
   );
 
-  return { subject, destroy };
+  return { ...subject, destroy };
 };

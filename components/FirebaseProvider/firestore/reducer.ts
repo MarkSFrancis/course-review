@@ -1,5 +1,6 @@
 import { BehaviorSubject } from "rxjs";
 import { QueryState } from "../../../utils";
+import { createCounterSubject } from './subscribable';
 
 interface ReducerAction<T> {
   type: QueryState<T>["state"];
@@ -33,12 +34,14 @@ const reducer = <T>(
   }
 };
 
-export const queryAsSubject = <T>(initialValue: QueryState<T>) => {
-  const subject = new BehaviorSubject<QueryState<T>>(initialValue);
+export const queryStateAsSubject = <T>(initialValue: QueryState<T>) => {
+  const reducedSubject = new BehaviorSubject<QueryState<T>>(initialValue);
 
   const dispatch = (action: ReducerAction<T>) => {
-    subject.next(reducer(subject.value, action));
+    reducedSubject.next(reducer(reducedSubject.value, action));
   };
+
+  const subject = createCounterSubject(reducedSubject);
 
   return { subject, dispatch };
 };
