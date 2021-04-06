@@ -36,7 +36,8 @@ export namespace firestore {
   export type DocSnapshot<
     T = firebaseCore.firestore.DocumentData
   > = firebaseCore.firestore.DocumentSnapshot<T>;
-  export type DocsSnapshot<
+  export type CollectionSnapshot<
     T = firebaseCore.firestore.DocumentData
   > = firebaseCore.firestore.QuerySnapshot<T>;
+  export type Error = firebaseCore.FirebaseError;
 }

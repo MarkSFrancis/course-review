@@ -8,7 +8,7 @@ export const useFirestoreGetDocs = <T>() => {
   }, []);
 
   const formatFunc = useCallback(
-    (r: firestore.DocsSnapshot) =>
+    (r: firestore.CollectionSnapshot) =>
       r.docs.map(
         (d) =>
           ({

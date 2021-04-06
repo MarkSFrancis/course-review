@@ -9,19 +9,18 @@ export const useFirestoreQueryReducer = <T, TQuery extends Query>(
 ): QueryState<QueryResult<T, TQuery>> => {
   const [state, setState] = useState<QueryState<QueryResult<T, TQuery>>>({
     state: "loading",
-    previousValue: undefined,
   });
 
   const cachedQuery = useQueryCached(query);
   const { queries } = useFirebaseApp();
 
-  useEffect(
-    () =>
-      queries.subscribe(cachedQuery, (state) =>
-        setState(state as QueryState<QueryResult<T, TQuery>>)
-      ),
-    [cachedQuery]
-  );
+  useEffect(() => {
+    const unsubscribe = queries.subscribe(cachedQuery, (state) =>
+      setState(state as QueryState<QueryResult<T, TQuery>>)
+    );
+
+    return unsubscribe;
+  }, [cachedQuery]);
 
   return state as QueryState<QueryResult<T, TQuery>>;
 };

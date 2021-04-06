@@ -40,8 +40,6 @@ export function QueryGuard<T>(props: QueryGuardProps<T>): ReactElement {
           />
         </Center>
       );
-    case "suspended":
-      return <></>;
     case "success":
       if (typeof props.children === "function") {
         return props.children(props.query);

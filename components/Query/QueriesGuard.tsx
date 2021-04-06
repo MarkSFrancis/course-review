@@ -31,7 +31,7 @@ export function QueriesGuard<T extends Readonly<any[]>>(
 
   const errorQuery = props.queries.find(
     (q) => q.state === "error"
-  ) as QueryFailedState<T>;
+  ) as QueryFailedState;
   if (errorQuery) {
     return (
       <Center>
@@ -51,10 +51,6 @@ export function QueriesGuard<T extends Readonly<any[]>>(
         />
       </Center>
     );
-  }
-
-  if (props.queries.find((q) => q.state === "suspended")) {
-    return <></>;
   }
 
   if (typeof props.children === "function") {

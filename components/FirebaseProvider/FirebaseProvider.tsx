@@ -9,7 +9,7 @@ const firebaseAppContext = createContext<FirebaseAppState>({
 export const useFirebaseApp = () => useContext(firebaseAppContext);
 
 export const FirebaseProvider: FC = (props) => {
-  const [subscribe] = useQueryManager();
+  const { subscribe } = useQueryManager();
 
   return (
     <firebaseAppContext.Provider
