@@ -9,10 +9,18 @@ import React, { FC } from "react";
 import { isFirebaseError, FirebaseErrorDisplay } from "./FirebaseErrorDisplay";
 import { GenericErrorDisplay } from "./GenericErrorDisplay";
 
-export interface ErrorDisplayProps {
+export interface ErrorDisplayWithChildren {
+  description?: string;
+  children: React.ReactNode;
+  err?: never;
+}
+
+export interface ErrorDisplayWithErr {
   err: unknown;
   description?: string;
 }
+
+export type ErrorDisplayProps = ErrorDisplayWithChildren | ErrorDisplayWithErr;
 
 const ErrorContent: FC<{ err: unknown }> = ({ err }) => {
   if (isFirebaseError(err)) {
@@ -22,13 +30,14 @@ const ErrorContent: FC<{ err: unknown }> = ({ err }) => {
   }
 };
 
-export const ErrorDisplay: FC<ErrorDisplayProps> = ({ err, description }) => (
+export const ErrorDisplay: FC<ErrorDisplayProps> = (props) => (
   <Alert variant="solid" status="error">
     <AlertIcon />
     <Box flex={1}>
-      {description && <AlertTitle mr={2}>{description}</AlertTitle>}
+      {props.description && <AlertTitle mr={2}>{props.description}</AlertTitle>}
       <AlertDescription display="block">
-        <ErrorContent err={err} />
+        {props.children}
+        {!!props.err && <ErrorContent err={props.err} />}
       </AlertDescription>
     </Box>
   </Alert>

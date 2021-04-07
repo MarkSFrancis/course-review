@@ -63,7 +63,7 @@ export const AddResourceForm: FC<AddResourceFormProps> = ({
           <VStack align="stretch" spacing={4}>
             {state.state === "error" && <ErrorDisplay err={state.error} />}
             {state.state === "success" && (
-              <SuccessDisplay title="Published resource">
+              <SuccessDisplay description="Published resource">
                 Your new resource has been published. Thank you for sharing!
               </SuccessDisplay>
             )}

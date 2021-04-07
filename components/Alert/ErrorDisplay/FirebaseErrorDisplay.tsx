@@ -13,7 +13,7 @@ export function isFirebaseError(error: unknown): error is FirebaseError {
 }
 
 export const FirebaseErrorDisplay: FC<{ err: FirebaseError }> = (props) => (
-  <>
+  <div role="alert">
     {props.err.error.code} - {props.err.error.message}
-  </>
+  </div>
 );

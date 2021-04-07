@@ -1,13 +1,13 @@
 import { firebase } from "./firebase";
 import "firebase/firestore";
-import { isDevMode } from "../mode";
+import { getMode } from "../mode";
 import firebaseCore from "firebase/app";
 
 const firestoreDb = firebase.firestore();
 let initialised = false;
 
 if (!initialised) {
-  if (isDevMode()) {
+  if (getMode() === "dev") {
     firestoreDb.useEmulator("localhost", 8080);
   }
 
@@ -40,4 +40,7 @@ export namespace firestore {
     T = firebaseCore.firestore.DocumentData
   > = firebaseCore.firestore.QuerySnapshot<T>;
   export type Error = firebaseCore.FirebaseError;
+  export function toTimestamp(date: string | number | Date) {
+    return firebaseCore.firestore.Timestamp.fromDate(new Date(date));
+  }
 }
