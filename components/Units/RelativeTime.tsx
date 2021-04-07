@@ -17,11 +17,12 @@ function convertToDate(date: ConfigType | firestore.Timestamp): ConfigType {
   return date;
 }
 
-export const RelativeTime: FC<
-  Omit<ComponentWithAs<"span", TextProps>, "children"> & {
-    children: ConfigType | firestore.Timestamp;
-  }
-> = forwardRef((props, ref) => {
+export interface RelativeTimeProps
+  extends Omit<ComponentWithAs<"span", TextProps>, "children"> {
+  children: ConfigType | firestore.Timestamp;
+}
+
+export const RelativeTime: FC<RelativeTimeProps> = forwardRef((props, ref) => {
   const date = convertToDate(props.children);
 
   return (

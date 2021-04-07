@@ -59,7 +59,7 @@ export const AddReviewForm: FC<AddReviewFormProps> = (props) => {
               <ErrorDisplay err={props.state.error} />
             )}
             {props.state.state === "success" && (
-              <SuccessDisplay title="Published resource">
+              <SuccessDisplay description="Published resource">
                 Your new review has been published. Thank you for sharing!
               </SuccessDisplay>
             )}

@@ -1,11 +1,11 @@
-import { isDevMode } from "../mode";
+import { getMode } from "../mode";
 import { firebase } from "./firebase";
 import firebaseCore from "firebase/app";
 import "firebase/auth";
 
 const firebaseAuthApp = firebase.auth();
 
-if (isDevMode()) {
+if (getMode() === "dev") {
   firebaseAuthApp.useEmulator("http://localhost:9099");
 }
 

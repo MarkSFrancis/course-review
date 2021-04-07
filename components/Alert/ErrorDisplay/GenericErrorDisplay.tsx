@@ -8,5 +8,5 @@ export const GenericErrorDisplay: FC<{ err: unknown }> = (props) => {
     serialized = <Code>{JSON.stringify(props.err, undefined, 2)}</Code>;
   }
 
-  return <>{serialized ?? props.err}</>;
+  return <>{serialized ?? props.err.toString()}</>;
 };
