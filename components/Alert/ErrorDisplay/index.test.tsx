@@ -34,6 +34,6 @@ describe("ErrorDisplay", () => {
 
     const alert = screen.getByRole("alert");
     expect(alert).toHaveTextContent(new RegExp(err));
-    expect(screen.findByTestId(childId)).toBeInTheDocument();
+    expect(screen.queryByTestId(childId)).toBeInTheDocument();
   });
 });
