@@ -13,6 +13,11 @@ The idea is to create a catalogue of tutorials, blogs, courses, videos, document
 
 ## Starting in dev mode
 
+1. To install packages, run:
+   ```sh
+   yarn install
+   ```
+
 1. In one terminal, run:
 
    ```sh
