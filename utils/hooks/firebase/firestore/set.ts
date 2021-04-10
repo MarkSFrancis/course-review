@@ -10,7 +10,5 @@ export const useFirestoreSet = <T>() => {
     []
   );
 
-  const formatFunc = useCallback((r: void) => r, []);
-
-  return useFetch(setFunc, formatFunc);
+  return useFetch(setFunc);
 };

@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import { ErrorDisplay } from ".";
+import { render, screen } from "test-utils/index";
 
 describe("SuccessDisplay", () => {
   it("renders children when provided", () => {

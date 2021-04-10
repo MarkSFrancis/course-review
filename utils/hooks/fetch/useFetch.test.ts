@@ -1,5 +1,22 @@
-import { act, renderHook } from "@testing-library/react-hooks";
+import { renderHook, act, waitFor as reactWaitFor } from "test-utils";
 import { useFetch } from "./useFetch";
+
+const waitFor = async <T>(
+  action: () => Promise<T> | T,
+  assert: () => void | boolean
+): Promise<T> => {
+  // Hacked because await act isn't working as expected
+  jest.spyOn(console, "error").mockImplementationOnce(() => {});
+
+  let result: T;
+  await act(async () => {
+    result = await action();
+  });
+
+  await reactWaitFor(assert);
+
+  return result;
+};
 
 describe("useFetch", () => {
   it("sets the initial state to suspended", () => {
@@ -7,12 +24,7 @@ describe("useFetch", () => {
       result: {
         current: [, state],
       },
-    } = renderHook(() =>
-      useFetch(
-        () => void 0,
-        () => void 0
-      )
-    );
+    } = renderHook(() => useFetch(() => void 0));
 
     expect(state.state).toEqual("suspended");
   });
@@ -21,18 +33,15 @@ describe("useFetch", () => {
     let shouldResolve = false;
 
     const { result } = renderHook(() =>
-      useFetch(
-        () => {
-          return new Promise((resolve) => {
-            setInterval(() => {
-              if (shouldResolve) {
-                resolve(void 0);
-              }
-            }, 10);
-          });
-        },
-        () => void 0
-      )
+      useFetch(() => {
+        return new Promise<void>((resolve) => {
+          setInterval(() => {
+            if (shouldResolve) {
+              resolve(void 0);
+            }
+          }, 10);
+        });
+      })
     );
 
     let promise: Promise<void>;
@@ -51,48 +60,39 @@ describe("useFetch", () => {
   });
 
   it("sets the state to success when loaded", async () => {
-    const { result } = renderHook(() =>
-      useFetch(
-        () => void 0,
-        () => void 0
-      )
+    const { result } = renderHook(() => useFetch(() => void 0));
+
+    await waitFor(result.current[0], () =>
+      expect(result.current[1].state).toEqual("success")
     );
-
-    await act(result.current[0]);
-
-    expect(result.current[1].state).toEqual("success");
   });
 
   it("sets the state to error when failed", async () => {
     const { result } = renderHook(() =>
-      useFetch(
-        () => {
-          throw new Error();
-        },
-        () => void 0
-      )
+      useFetch(() => {
+        throw new Error();
+      })
     );
 
-    await act(result.current[0]);
-
-    expect(result.current[1].state).toEqual("error");
+    await waitFor(result.current[0], () =>
+      expect(result.current[1].state).toEqual("error")
+    );
   });
 
   it("returns the result of the promise when loaded", async () => {
     let expected = 5;
 
-    const { result } = renderHook(() =>
-      useFetch(
-        () => expected - 1, // Change expected to test that formatter is also called
-        (r) => r + 1 // Restore to expected value
-      )
-    );
+    const { result } = renderHook(() => useFetch(() => expected));
 
-    await act(result.current[0]);
+    const callbackResult = await waitFor(result.current[0], () => {
+      expect(result.current[1].state).toEqual("success");
+    });
 
     const actual = result.current[1];
-    const actualResolved = actual.state === "success" && actual.value;
+    const actualValue = actual.state === "success" && actual.value;
 
-    expect(actualResolved).toEqual(expected);
+    expect(actual.state).toEqual("success");
+    expect(callbackResult).toEqual(expected);
+    expect(actualValue).toEqual(expected);
   });
 });

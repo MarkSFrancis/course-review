@@ -1,7 +1,6 @@
 import { useUser } from "./useUser";
 import { auth, firebaseAuth } from "../../../firebase";
-import { mocked } from "ts-jest/utils";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook, mocked } from "test-utils";
 
 jest.mock("../../../firebase");
 const authMock = mocked(auth);

@@ -7,16 +7,11 @@ export interface FirestoreAddResult {
 }
 
 export const useFirestoreAdd = <T>() => {
-  const addFunc = useCallback((path: string, doc: T) => {
-    return db.collection(path).add(doc);
+  const addFunc = useCallback(async (path: string, doc: T) => {
+    const newDoc = await db.collection(path).add(doc);
+
+    return { id: newDoc.id };
   }, []);
 
-  const formatFunc = useCallback(
-    (r: firestore.DocRef): FirestoreAddResult => ({
-      id: r.id,
-    }),
-    []
-  );
-
-  return useFetch(addFunc, formatFunc);
+  return useFetch(addFunc);
 };

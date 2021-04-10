@@ -1,7 +1,6 @@
 import { useIsMounted } from "./useIsMounted";
-import { mocked } from "ts-jest/utils";
 import { useSafeState } from "./useSafeState";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook, mocked } from "test-utils";
 
 jest.mock("./useIsMounted");
 const useIsMountedMock = mocked(useIsMounted);

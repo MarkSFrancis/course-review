@@ -1,7 +1,7 @@
 import { AuditCreatedBy } from "../../models";
 import { RelativeTime, RelativeTimeProps } from "../Units";
 import { firestore } from "../../utils";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "test-utils";
 import MockDate from "mockdate";
 import { mocked } from "ts-jest/utils";
 import React from "react";
