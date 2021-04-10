@@ -1,4 +1,4 @@
-import { Link, Text } from "@chakra-ui/react";
+import { Link, Text } from "design-system";
 import { FC } from "react";
 import NextLink from "next/link";
 

@@ -1,4 +1,4 @@
-import { InputProps, useMenuContext, Input } from "@chakra-ui/react";
+import { InputProps, useMenuContext, Input } from "design-system";
 import React, { FC, LegacyRef } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 

@@ -1,4 +1,4 @@
-import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
+import { FormControl, FormErrorMessage, FormLabel } from "design-system";
 import React, { FC } from "react";
 import { useField } from "./FormFieldContext";
 import { FieldChildren, FormikChildren } from "./types";

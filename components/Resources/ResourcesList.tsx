@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Text } from "design-system";
 import React, { FC } from "react";
 import { ResourceProvider } from "./ResourceContext";
 import { useResources } from "./ResourcesContext";

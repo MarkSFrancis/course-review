@@ -1,11 +1,10 @@
-import { Button } from "@chakra-ui/button";
+import { Button } from "design-system";
 import { IconPlus } from "@tabler/icons";
 import { FC, useCallback, useEffect, useState } from "react";
 import { Topic } from "../../../models";
 import { now, random, useFirestoreAdd, useUser, WithId } from "../../../utils";
 import { useTopics } from "../TopicsContext";
 import { TopicAutocomplete } from "./TopicAutocomplete";
-import Color from "color";
 
 export interface AddTopicProps {
   onAdd: (topic: WithId<Topic>) => void;

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ConfigType } from "dayjs";
-import { ComponentWithAs, forwardRef, Text, TextProps } from "@chakra-ui/react";
+import { ComponentWithAs, forwardRef, Text, TextProps } from "design-system";
 import { firestore, formatRelativeDate } from "../../utils";
 
 function canConvertToDate(

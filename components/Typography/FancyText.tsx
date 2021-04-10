@@ -1,4 +1,4 @@
-import { TextProps, Text, forwardRef } from "@chakra-ui/react";
+import { TextProps, Text, forwardRef } from "design-system";
 
 export const FancyText = forwardRef<TextProps, "span">((props, ref) => (
   <Text

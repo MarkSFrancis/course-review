@@ -1,11 +1,8 @@
 import React, { FC } from "react";
-import {
-  useFirestoreCollection,
-  useFirestoreDoc,
-} from "../../../utils";
+import { useFirestoreCollection, useFirestoreDoc } from "../../../utils";
 import { Section } from "../../Layout";
 import { QueriesGuard } from "../../Query";
-import { Divider, VStack } from "@chakra-ui/react";
+import { Divider, VStack } from "design-system";
 import { Resource as ResourceDb, Review } from "../../../models";
 import { ResourceProvider } from "../ResourceContext";
 import { ReviewsProvider } from "../../Reviews/ReviewsContext";

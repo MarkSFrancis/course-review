@@ -4,7 +4,7 @@ import {
   AlertIcon,
   AlertTitle,
   Box,
-} from "@chakra-ui/react";
+} from "design-system";
 import React, { FC } from "react";
 import { isFirebaseError, FirebaseErrorDisplay } from "./FirebaseErrorDisplay";
 import { GenericErrorDisplay } from "./GenericErrorDisplay";

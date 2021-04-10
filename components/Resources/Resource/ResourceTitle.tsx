@@ -1,5 +1,4 @@
-import { HStack } from "@chakra-ui/layout";
-import { Stack } from "@chakra-ui/react";
+import { Stack } from "design-system";
 import React, { FC } from "react";
 import { FancyHeading, SecondaryHeading } from "../../Typography";
 import { useResource } from "../ResourceContext";

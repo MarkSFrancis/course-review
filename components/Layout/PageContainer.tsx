@@ -1,4 +1,4 @@
-import { Container, ContainerProps, forwardRef } from "@chakra-ui/react";
+import { Container, ContainerProps, forwardRef } from "design-system";
 import React from "react";
 import { BlurryBlobsBox } from "./Background";
 

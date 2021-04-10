@@ -1,6 +1,9 @@
-import { IconButton, IconButtonProps } from "@chakra-ui/button";
-import { forwardRef } from "@chakra-ui/system";
-import { Tooltip } from "@chakra-ui/tooltip";
+import {
+  forwardRef,
+  IconButton,
+  IconButtonProps,
+  Tooltip,
+} from "design-system";
 import React from "react";
 import { useEditor } from "slate-react";
 import {

@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/layout";
+import { HStack } from "design-system";
 import React, { FC, useCallback } from "react";
 import { Topic } from "../../../models";
 import { WithId } from "../../../utils";

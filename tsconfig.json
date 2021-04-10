@@ -24,6 +24,9 @@
       "test-utils/*": [
         "./test-utils/*"
       ],
+      "design-system": [
+        "./components/DesignSystem"
+      ],
     }
   },
   "include": [

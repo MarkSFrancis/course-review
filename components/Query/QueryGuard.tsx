@@ -1,4 +1,4 @@
-import { Center, Spinner } from "@chakra-ui/react";
+import { Center, Spinner } from "design-system";
 import React, { ReactElement } from "react";
 import { QueryState, QuerySuccessState } from "../../utils";
 import { ErrorDisplay } from "../Alert";

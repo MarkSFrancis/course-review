@@ -1,4 +1,4 @@
-import { Tag, TagCloseButton, TagLabel, TagProps } from "@chakra-ui/tag";
+import { Tag, TagCloseButton, TagLabel, TagProps } from "design-system";
 import { FC, useEffect, useState } from "react";
 import { getForegroundColor } from "../../utils";
 import { useTopics } from "./TopicsContext";

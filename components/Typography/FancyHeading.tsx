@@ -1,4 +1,4 @@
-import { Heading, forwardRef, HeadingProps } from "@chakra-ui/react";
+import { Heading, forwardRef, HeadingProps } from "design-system";
 import { FancyText } from "./FancyText";
 
 export const FancyHeading = forwardRef<HeadingProps, "span">((props, ref) => (

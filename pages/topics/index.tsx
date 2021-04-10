@@ -3,7 +3,7 @@ import { PageContainer } from "../../components/Layout/PageContainer";
 import { FancyHeading } from "../../components/Typography";
 import { Section } from "../../components/Layout";
 import React from "react";
-import { VStack } from "@chakra-ui/react";
+import { VStack } from "design-system";
 import { Topics } from "../../components/Topics";
 
 export default function TopicsPage() {

@@ -1,6 +1,4 @@
-import { MenuItem } from "@chakra-ui/menu";
-import { MenuItemProps } from "@chakra-ui/react";
-import { forwardRef } from "@chakra-ui/system";
+import { forwardRef, MenuItem, MenuItemProps } from "design-system";
 import React, { useCallback } from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 

@@ -1,4 +1,4 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Text, VStack } from "design-system";
 import React, { FC } from "react";
 import { Section } from "../Layout";
 import { ReviewProvider } from "./ReviewContext";

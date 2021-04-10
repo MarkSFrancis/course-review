@@ -1,4 +1,4 @@
-import { Box, Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from "design-system";
 import React, { FC } from "react";
 import { AuditCreated } from "../../Audit";
 import { RichInputPreview } from "../../Forms/RichInput";

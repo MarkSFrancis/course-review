@@ -1,4 +1,4 @@
-import { forwardRef, Input } from "@chakra-ui/react";
+import { forwardRef, Input } from "design-system";
 import React from "react";
 import { Field, FieldProps } from "./Field";
 

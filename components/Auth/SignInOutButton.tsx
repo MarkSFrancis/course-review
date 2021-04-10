@@ -1,4 +1,4 @@
-import { Button, ButtonProps, forwardRef } from "@chakra-ui/react";
+import { Button, ButtonProps, forwardRef } from "design-system";
 import React, { useCallback, MouseEvent } from "react";
 import { auth, microsoftAuthProvider, useUser } from "../../utils";
 import { useSafeState } from "../../utils/hooks/useSafeState";

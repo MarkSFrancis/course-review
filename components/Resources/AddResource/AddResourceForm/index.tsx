@@ -1,4 +1,4 @@
-import { Button, HStack, Radio, RadioGroup, VStack } from "@chakra-ui/react";
+import { Button, HStack, Radio, RadioGroup, VStack } from "design-system";
 import React, { FC, useCallback } from "react";
 import { ResourceType } from "../../../../models";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";

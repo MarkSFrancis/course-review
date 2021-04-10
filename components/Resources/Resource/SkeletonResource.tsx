@@ -1,4 +1,4 @@
-import { SkeletonText } from "@chakra-ui/react";
+import { SkeletonText } from "design-system";
 import React, { FC } from "react";
 import { Section } from "../../Layout";
 
