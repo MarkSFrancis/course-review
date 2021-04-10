@@ -1,6 +1,6 @@
 import { FirebaseError } from "../../../utils";
 import { isFirebaseError, FirebaseErrorDisplay } from "./FirebaseErrorDisplay";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "test-utils";
 
 const testError: FirebaseError = {
   error: {

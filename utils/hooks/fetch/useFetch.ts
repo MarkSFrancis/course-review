@@ -30,13 +30,8 @@ const fetchReducer = <T>(
   }
 };
 
-export const useFetch = <
-  TParams extends unknown[] = [],
-  TResult = void,
-  TResponse = Response
->(
-  func: (...params: TParams) => Promise<TResponse> | TResponse,
-  formatter: (response: TResponse) => Promise<TResult> | TResult
+export const useFetch = <TParams extends unknown[] = [], TResult = void>(
+  func: (...params: TParams) => Promise<TResult> | TResult
 ) => {
   const [reducer, dispatch] = useReducer(fetchReducer, {
     state: "suspended",
@@ -50,8 +45,7 @@ export const useFetch = <
 
     let result: TResult;
     try {
-      const response = await func(...params);
-      result = await formatter(response);
+      result = await func(...params);
 
       dispatch({
         type: "success",

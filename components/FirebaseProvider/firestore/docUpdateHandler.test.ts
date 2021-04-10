@@ -1,4 +1,4 @@
-import { mocked } from "ts-jest/utils";
+import { mocked } from "test-utils";
 import { firestore, QueryLoadingState, WithId } from "../../../utils";
 import { collectionUpdateHandler } from "./collectionUpdateHandler";
 import { QueryReducerAction, queryStateAsSubject } from "./queryReducer";

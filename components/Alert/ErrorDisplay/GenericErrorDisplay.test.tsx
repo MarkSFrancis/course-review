@@ -1,5 +1,5 @@
 import { GenericErrorDisplay } from "./GenericErrorDisplay";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from "test-utils";
 
 describe("GenericErrorDisplay", () => {
   it("should display the value if it is not an object", () => {
