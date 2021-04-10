@@ -1,11 +1,11 @@
-import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
+import { ChevronUpIcon, ChevronDownIcon } from "design-system";
 import {
   useMenuContext,
   IconButton,
   InputRightAddon,
   InputAddonProps,
   forwardRef,
-} from "@chakra-ui/react";
+} from "design-system";
 
 export const AutocompleteDropdown = forwardRef<
   InputAddonProps,

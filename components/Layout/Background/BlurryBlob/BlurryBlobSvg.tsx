@@ -1,9 +1,4 @@
-import {
-  forwardRef,
-  Icon,
-  IconProps,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { forwardRef, Icon, IconProps, useBreakpointValue } from "design-system";
 import React from "react";
 import { Blob as Blob } from "./Blob";
 

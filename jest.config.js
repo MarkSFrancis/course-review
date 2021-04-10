@@ -4,6 +4,7 @@ module.exports = {
   moduleNameMapper: {
     "test-utils": "<rootDir>/test-utils",
     "test-utils/(.*)": "<rootDir>/test-utils/$1",
+    "design-system": "<rootDir>/components/DesignSystem",
   },
   globals: {
     "ts-jest": {

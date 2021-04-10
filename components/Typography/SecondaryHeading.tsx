@@ -1,4 +1,4 @@
-import { Heading, HeadingProps } from "@chakra-ui/react";
+import { Heading, HeadingProps } from "design-system";
 import { FC } from "react";
 import { theme } from "../../utils";
 

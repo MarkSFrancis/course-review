@@ -1,4 +1,4 @@
-import { HStack } from "@chakra-ui/react";
+import { HStack } from "design-system";
 import React from "react";
 import { TopicDisplay } from "../../Topics/TopicDisplay";
 import { TopicsProvider } from "../../Topics/TopicsContext";

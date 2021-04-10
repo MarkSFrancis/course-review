@@ -1,5 +1,4 @@
-import { Divider } from "@chakra-ui/layout";
-import { VStack } from "@chakra-ui/react";
+import { VStack } from "design-system";
 import React, { FC } from "react";
 import { Review } from "../../models";
 import { WithId } from "../../utils";

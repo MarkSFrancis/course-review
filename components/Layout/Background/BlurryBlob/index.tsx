@@ -1,4 +1,4 @@
-import { forwardRef, Box, BoxProps } from "@chakra-ui/react";
+import { forwardRef, Box, BoxProps } from "design-system";
 import React from "react";
 import { BlurryBlobSvg } from "./BlurryBlobSvg";
 

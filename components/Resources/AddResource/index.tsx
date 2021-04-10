@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/react";
+import { VStack } from "design-system";
 import { FC, useCallback } from "react";
 import { FancyHeading } from "../../Typography";
 import { AddResourceForm, NewResource } from "./AddResourceForm";

@@ -1,4 +1,4 @@
-import { Code } from "@chakra-ui/react";
+import { Code } from "design-system";
 import { FC, ReactElement } from "react";
 
 export const GenericErrorDisplay: FC<{ err: unknown }> = (props) => {

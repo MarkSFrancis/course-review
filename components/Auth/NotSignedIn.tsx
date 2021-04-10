@@ -1,10 +1,4 @@
-import {
-  Alert,
-  AlertIcon,
-  AlertProps,
-  forwardRef,
-  Text,
-} from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertProps, forwardRef, Text } from "design-system";
 import React from "react";
 
 export const NotSignedIn = forwardRef<AlertProps, typeof Alert>(

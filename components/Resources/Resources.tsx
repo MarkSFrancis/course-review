@@ -5,9 +5,9 @@ import { useFirestoreCollection } from "../../utils";
 import { Section } from "../Layout";
 import { QueryGuard } from "../Query";
 import { FancyHeading } from "../Typography";
-import { VStack } from "@chakra-ui/react";
+import { VStack } from "design-system";
 import { Resource } from "../../models";
-import { SkeletonResource } from './Resource/SkeletonResource';
+import { SkeletonResource } from "./Resource/SkeletonResource";
 
 export const Resources = () => {
   const query = useFirestoreCollection<Resource>((db) =>

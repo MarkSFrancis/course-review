@@ -1,4 +1,4 @@
-import { VStack } from "@chakra-ui/layout";
+import { VStack } from "design-system";
 import { FormikHelpers } from "formik";
 import React, { FC, useCallback } from "react";
 import { Review } from "../../../models";

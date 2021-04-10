@@ -1,4 +1,4 @@
-import { forwardRef, Icon, IconProps } from "@chakra-ui/react";
+import { forwardRef, Icon, IconProps } from "design-system";
 import { IconBook } from "@tabler/icons";
 
 export * from "./MicrosoftLogo";

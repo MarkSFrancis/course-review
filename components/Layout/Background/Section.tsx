@@ -1,4 +1,4 @@
-import { Box, forwardRef, useColorModeValue } from "@chakra-ui/react";
+import { Box, forwardRef, useColorModeValue } from "design-system";
 
 export const Section = forwardRef((props, ref) => {
   const bg = useColorModeValue("whiteAlpha.900", "blackAlpha.700");

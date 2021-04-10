@@ -1,4 +1,4 @@
-import { InputGroup } from "@chakra-ui/input";
+import { InputGroup } from "design-system";
 import React from "react";
 import { useAutocompleteContext } from "./AutocompleteContext";
 import { AutocompleteDropdown } from "./AutocompleteDropdown";

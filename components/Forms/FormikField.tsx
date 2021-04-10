@@ -5,7 +5,7 @@ import {
   FieldMetaProps,
   FormikProps,
 } from "formik";
-import { forwardRef } from "@chakra-ui/react";
+import { forwardRef } from "design-system";
 import { FormikChildren, FormikFieldChildren, FieldChildren } from "./types";
 import { FieldProvider } from "./FormFieldContext";
 

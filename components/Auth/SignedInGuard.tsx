@@ -1,10 +1,10 @@
-import { Center, Spinner } from "@chakra-ui/react";
+import { Center, Spinner } from "design-system";
 import React, { FC, ReactNode } from "react";
 import { useUser } from "../../utils";
 import { NotSignedIn } from "./NotSignedIn";
 
 export interface SignedInGuardProps {
-  NotSignedIn?: ReactNode;
+  notSignedIn?: ReactNode;
 }
 
 export const SignedInGuard: FC<SignedInGuardProps> = (props) => {
@@ -19,7 +19,7 @@ export const SignedInGuard: FC<SignedInGuardProps> = (props) => {
   }
 
   if (!user.user) {
-    return <>{props.NotSignedIn ?? <NotSignedIn />}</>;
+    return <>{props.notSignedIn ?? <NotSignedIn />}</>;
   }
 
   return <>{props.children}</>;

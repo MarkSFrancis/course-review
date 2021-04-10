@@ -1,4 +1,4 @@
-import { forwardRef, Icon, IconProps } from "@chakra-ui/react";
+import { forwardRef, Icon, IconProps } from "design-system";
 import React from "react";
 
 export const MicrosoftLogo = forwardRef<IconProps, typeof Icon>(

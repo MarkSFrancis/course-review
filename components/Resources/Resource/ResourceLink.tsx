@@ -1,8 +1,8 @@
-import { Link, Button, Stack, Box } from "@chakra-ui/react";
+import { Link, Button, Stack, Box } from "design-system";
 import React, { FC } from "react";
 import { useResource } from "../ResourceContext";
 import NextLink from "next/link";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon } from "design-system";
 
 export const ResourceLink: FC<{ linkToDetails?: boolean }> = ({
   linkToDetails,

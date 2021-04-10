@@ -1,9 +1,9 @@
-import { HStack, IconButton, Tooltip } from "@chakra-ui/react";
+import { HStack, IconButton, Tooltip } from "design-system";
 import React, { FC } from "react";
 import { ThemeToggle } from "../ThemeToggle";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarLink } from "./NavBarLink";
-import { AddIcon } from "@chakra-ui/icons";
+import { AddIcon } from "design-system";
 import { PageContainer } from "../Layout/PageContainer";
 import { Section } from "../Layout";
 import { SignedInGuard, SignInOutButton } from "../Auth";
@@ -17,7 +17,7 @@ export const NavBar: FC = () => {
             <NavBarLogo />
           </HStack>
           <HStack spacing={4}>
-            <SignedInGuard NotSignedIn={<SignInOutButton />}>
+            <SignedInGuard notSignedIn={<SignInOutButton />}>
               <NavBarLink href="/add">
                 <Tooltip label="Add a resource">
                   <IconButton aria-label="Add a resource" icon={<AddIcon />} />

@@ -7,7 +7,7 @@ import {
 } from "slate-react/dist/components/editable";
 import { Element, Leaf } from "./utils/elements";
 import { onRichTextKeyDown } from "./utils/shortcuts";
-import { Box } from "@chakra-ui/layout";
+import { Box } from "design-system";
 
 export interface RichTextRenderProps
   extends Omit<EditableProps, "value" | "onChange"> {}

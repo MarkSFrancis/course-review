@@ -3,7 +3,7 @@ import { createEditor, Node } from "slate";
 import React, { FC, useMemo } from "react";
 import { DefaultToolbar } from "./DefaultToolbar";
 import { Toolbar } from "./Toolbar";
-import { Box, BoxProps, Divider, useColorModeValue } from "@chakra-ui/react";
+import { Box, BoxProps, Divider, useColorModeValue } from "design-system";
 import { RichTextRender } from "./RichTextRender";
 import { RichInputBox } from "./RichInputBox";
 

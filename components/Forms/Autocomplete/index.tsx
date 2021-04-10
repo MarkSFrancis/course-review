@@ -1,4 +1,4 @@
-import { Box, Menu } from "@chakra-ui/react";
+import { Box, Menu } from "design-system";
 import React, { ReactNode } from "react";
 import {
   AutocompleteContext,

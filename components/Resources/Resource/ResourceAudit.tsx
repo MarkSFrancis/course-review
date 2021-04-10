@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { AuditCreated } from "../../Audit";
-import { Text } from "@chakra-ui/react";
+import { Text } from "design-system";
 import { useResource } from "../ResourceContext";
 
 export const ResourceAudit: FC = () => {

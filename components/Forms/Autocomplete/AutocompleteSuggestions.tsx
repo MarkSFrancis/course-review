@@ -1,4 +1,4 @@
-import { MenuListProps, Box, MenuList, useMenuContext } from "@chakra-ui/react";
+import { MenuListProps, Box, MenuList, useMenuContext } from "design-system";
 import React, { FC } from "react";
 
 export interface AutocompleteSuggestionsProps {

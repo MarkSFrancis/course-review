@@ -5,7 +5,7 @@ import {
   UnorderedList,
   Text,
   Code,
-} from "@chakra-ui/react";
+} from "design-system";
 import React, { FC } from "react";
 import { RenderElementProps, RenderLeafProps } from "slate-react";
 import { BlockFormat, MarkFormat } from "./types";

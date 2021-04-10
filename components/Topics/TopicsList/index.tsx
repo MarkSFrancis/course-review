@@ -1,5 +1,4 @@
-import { Wrap } from "@chakra-ui/layout";
-import { WrapItem } from "@chakra-ui/react";
+import { Wrap, WrapItem } from "design-system";
 import React, { FC } from "react";
 import { TopicDisplay } from "../TopicDisplay";
 import { useTopics } from "../TopicsContext";

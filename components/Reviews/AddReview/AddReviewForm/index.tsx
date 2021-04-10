@@ -6,7 +6,7 @@ import {
   NumberInputField,
   NumberInputStepper,
   VStack,
-} from "@chakra-ui/react";
+} from "design-system";
 import React, { FC, useCallback } from "react";
 import { RichInput } from "../../../Forms/RichInput";
 import { Node } from "slate";

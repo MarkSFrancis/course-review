@@ -1,5 +1,5 @@
-import { HStack, Switch, useColorMode } from "@chakra-ui/react";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { HStack, Switch, useColorMode } from "design-system";
+import { SunIcon, MoonIcon } from "design-system";
 import { FC } from "react";
 
 export const ThemeToggle: FC = () => {
