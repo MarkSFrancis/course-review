@@ -16,4 +16,5 @@ export const microsoftAuthProvider = new firebase.auth.OAuthProvider(
 export const auth = firebaseAuthApp;
 export namespace firebaseAuth {
   export type User = firebaseCore.User;
+  export type UserCredential = firebaseCore.auth.UserCredential
 }

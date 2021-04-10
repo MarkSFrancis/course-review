@@ -1,4 +1,9 @@
-import { renderHook, act, waitFor as reactWaitFor } from "test-utils";
+import {
+  renderHook,
+  act,
+  waitFor as reactWaitFor,
+  suppressNextActWarning,
+} from "test-utils";
 import { useFetch } from "./useFetch";
 
 const waitFor = async <T>(
@@ -6,7 +11,7 @@ const waitFor = async <T>(
   assert: () => void | boolean
 ): Promise<T> => {
   // Hacked because await act isn't working as expected
-  jest.spyOn(console, "error").mockImplementationOnce(() => {});
+  suppressNextActWarning();
 
   let result: T;
   await act(async () => {

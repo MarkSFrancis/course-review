@@ -10,7 +10,7 @@ import { queryStateAsSubject } from "./queryReducer";
 describe("queryStateAsSubject", () => {
   afterEach(() => {
     jest.resetAllMocks();
-  })
+  });
 
   it("should immediately emit an event with the initial value when first subscribed", () => {
     const state: QueryState<unknown> = { state: "loading" };
