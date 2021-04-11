@@ -1,5 +1,5 @@
 import { PageMeta } from "../../components/PageMeta";
-import { PageContainer } from "../../components/Layout/PageContainer";
+import { PageContainer } from "design-system";
 import { Resource } from "../../components/Resources";
 import { useRouter } from "next/router";
 

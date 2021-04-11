@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Autocomplete } from "../../Forms/Autocomplete";
+import { Autocomplete } from "design-system";
 import { useTopics } from "../TopicsContext";
 
 export interface TopicAutocomplete {

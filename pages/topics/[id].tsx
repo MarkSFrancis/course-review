@@ -1,5 +1,5 @@
 import { PageMeta } from "../../components/PageMeta";
-import { PageContainer } from '../../components/Layout/PageContainer';
+import { PageContainer } from "design-system";
 import { FancyHeading } from "../../components/Typography";
 
 export default function Topic() {

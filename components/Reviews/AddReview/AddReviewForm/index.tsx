@@ -1,17 +1,17 @@
 import {
   Button,
+  Field,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  RichInput,
   VStack,
 } from "design-system";
 import React, { FC, useCallback } from "react";
-import { RichInput } from "../../../Forms/RichInput";
 import { Node } from "slate";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
-import { Field } from "../../../Forms";
 import { FetchState, FirestoreAddResult } from "../../../../utils";
 import { ErrorDisplay, SuccessDisplay } from "../../../Alert";
 

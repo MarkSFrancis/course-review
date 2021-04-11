@@ -1,6 +1,5 @@
-import { Text, VStack } from "design-system";
+import { Section, Text, VStack } from "design-system";
 import React, { FC } from "react";
-import { Section } from "../Layout";
 import { ReviewProvider } from "./ReviewContext";
 import { ReviewDisplay } from "./ReviewDisplay";
 import { useReviews } from "./ReviewsContext";

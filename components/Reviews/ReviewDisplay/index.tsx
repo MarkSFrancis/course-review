@@ -1,7 +1,6 @@
-import { Box, Text, VStack } from "design-system";
+import { Box, RichInputPreview, Text, VStack } from "design-system";
 import React, { FC } from "react";
 import { AuditCreated } from "../../Audit";
-import { RichInputPreview } from "../../Forms/RichInput";
 import { Rating } from "../Rating";
 import { useReview } from "../ReviewContext";
 

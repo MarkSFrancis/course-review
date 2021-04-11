@@ -1,6 +1,6 @@
 import React from "react";
 import { PageMeta } from "../components/PageMeta";
-import { PageContainer } from "../components/Layout/PageContainer";
+import { PageContainer } from "design-system";
 import { Resources } from '../components/Resources';
 
 export default function Home() {

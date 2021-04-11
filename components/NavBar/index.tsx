@@ -4,8 +4,8 @@ import { ThemeToggle } from "../ThemeToggle";
 import { NavBarLogo } from "./NavBarLogo";
 import { NavBarLink } from "./NavBarLink";
 import { AddIcon } from "design-system";
-import { PageContainer } from "../Layout/PageContainer";
-import { Section } from "../Layout";
+import { PageContainer } from "design-system";
+import { Section } from "design-system";
 import { SignedInGuard, SignInOutButton } from "../Auth";
 
 export const NavBar: FC = () => {

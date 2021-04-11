@@ -1,8 +1,7 @@
-import { Button, HStack, Radio, RadioGroup, VStack } from "design-system";
+import { Button, HStack, Field, FieldInput, Radio, RadioGroup, VStack } from "design-system";
 import React, { FC, useCallback } from "react";
 import { ResourceType } from "../../../../models";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
-import { Field, FieldInput } from "../../../Forms";
 import { FetchState, FirestoreAddResult } from "../../../../utils";
 import { ErrorDisplay, SuccessDisplay } from "../../../Alert";
 import { TopicEditor } from "../../../Topics";
