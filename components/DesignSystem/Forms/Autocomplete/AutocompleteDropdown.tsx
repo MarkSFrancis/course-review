@@ -1,3 +1,4 @@
+import { Tooltip } from "@chakra-ui/tooltip";
 import { ChevronUpIcon, ChevronDownIcon } from "design-system";
 import {
   useMenuContext,
@@ -13,14 +14,22 @@ export const AutocompleteDropdown = forwardRef<
 >((props, ref) => {
   const menu = useMenuContext();
 
+  const label = `${menu.isOpen ? "Hide" : "Show"} autocomplete suggestions`;
+
   return (
-    <InputRightAddon
-      as={IconButton}
-      ref={ref}
-      aria-label="Show autocomplete suggestions"
-      icon={menu.isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-      onClick={() => (menu.isOpen ? menu.onClose() : menu.onOpen())}
-      {...props}
-    />
+    <Tooltip label={label}>
+      <InputRightAddon
+        as={IconButton}
+        ref={ref}
+        aria-label={label}
+        aria-haspopup="menu"
+        aria-expanded={menu.isOpen}
+        aria-controls={menu.menuId}
+        id={menu.buttonId}
+        icon={menu.isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+        onClick={() => (menu.isOpen ? menu.onClose() : menu.onOpen())}
+        {...props}
+      />
+    </Tooltip>
   );
 });

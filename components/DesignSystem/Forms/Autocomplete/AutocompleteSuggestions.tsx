@@ -1,17 +1,11 @@
 import { MenuListProps, Box, MenuList, useMenuContext } from "design-system";
 import React, { FC } from "react";
 
-export interface AutocompleteSuggestionsProps {
-  max?: number;
-}
-
-export const AutocompleteSuggestions: FC<
-  MenuListProps & AutocompleteSuggestionsProps
-> = (props) => {
+export const AutocompleteSuggestions: FC<MenuListProps> = (props) => {
   const menu = useMenuContext();
 
   return (
-    <Box position="absolute" top={menu.buttonRef.current?.clientHeight}>
+    <Box position="absolute" minWidth="100%" zIndex="1" top={menu.buttonRef.current?.clientHeight ?? 0}>
       <MenuList {...props} />
     </Box>
   );
