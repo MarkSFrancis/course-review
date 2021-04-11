@@ -1,10 +1,4 @@
-import {
-  render,
-  mocked,
-  screen,
-  userEvents,
-  suppressNextActWarning,
-} from "test-utils";
+import { render, mocked, screen, userEvents, actWithoutWarn } from "test-utils";
 import {
   auth,
   firebaseAuth,
@@ -59,9 +53,11 @@ describe("SignInOutButton", () => {
 
     const signIn = screen.queryByText("Sign in");
 
-    suppressNextActWarning();
-    userEvents.click(signIn);
-    await screen.findByText("Sign out");
+    await actWithoutWarn(async () => {
+      userEvents.click(signIn);
+
+      await screen.findByText("Sign out");
+    });
 
     expect(authMock.signInWithPopup).toHaveBeenCalledWith(
       microsoftAuthProvider
@@ -82,9 +78,10 @@ describe("SignInOutButton", () => {
 
     const signOut = screen.queryByText("Sign out");
 
-    suppressNextActWarning();
-    userEvents.click(signOut);
-    await screen.findByText(new RegExp("Sign in"));
+    await actWithoutWarn(async () => {
+      userEvents.click(signOut);
+      await screen.findByText(new RegExp("Sign in"));
+    });
 
     expect(authMock.signOut).toHaveBeenCalled();
   });

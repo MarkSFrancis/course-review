@@ -1,27 +1,5 @@
-import {
-  renderHook,
-  act,
-  waitFor as reactWaitFor,
-  suppressNextActWarning,
-} from "test-utils";
+import { renderHook, act, waitFor, actWithoutWarn } from "test-utils";
 import { useFetch } from "./useFetch";
-
-const waitFor = async <T>(
-  action: () => Promise<T> | T,
-  assert: () => void | boolean
-): Promise<T> => {
-  // Hacked because await act isn't working as expected
-  suppressNextActWarning();
-
-  let result: T;
-  await act(async () => {
-    result = await action();
-  });
-
-  await reactWaitFor(assert);
-
-  return result;
-};
 
 describe("useFetch", () => {
   it("sets the initial state to suspended", () => {
@@ -67,9 +45,9 @@ describe("useFetch", () => {
   it("sets the state to success when loaded", async () => {
     const { result } = renderHook(() => useFetch(() => void 0));
 
-    await waitFor(result.current[0], () =>
-      expect(result.current[1].state).toEqual("success")
-    );
+    await actWithoutWarn(result.current[0]);
+
+    expect(result.current[1].state).toEqual("success");
   });
 
   it("sets the state to error when failed", async () => {
@@ -79,9 +57,9 @@ describe("useFetch", () => {
       })
     );
 
-    await waitFor(result.current[0], () =>
-      expect(result.current[1].state).toEqual("error")
-    );
+    await actWithoutWarn(result.current[0]);
+
+    expect(result.current[1].state).toEqual("error");
   });
 
   it("returns the result of the promise when loaded", async () => {
@@ -89,9 +67,7 @@ describe("useFetch", () => {
 
     const { result } = renderHook(() => useFetch(() => expected));
 
-    const callbackResult = await waitFor(result.current[0], () => {
-      expect(result.current[1].state).toEqual("success");
-    });
+    const callbackResult = await actWithoutWarn(result.current[0]);
 
     const actual = result.current[1];
     const actualValue = actual.state === "success" && actual.value;
