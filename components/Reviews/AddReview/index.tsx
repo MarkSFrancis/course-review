@@ -1,9 +1,8 @@
-import { VStack } from "design-system";
+import { Section, VStack } from "design-system";
 import { FormikHelpers } from "formik";
 import React, { FC, useCallback } from "react";
 import { Review } from "../../../models";
 import { now, useFirestoreAdd, useUser } from "../../../utils";
-import { Section } from "../../Layout";
 import { useResource } from "../../Resources/ResourceContext";
 import { SecondaryHeading } from "../../Typography";
 import { useReviews } from "../ReviewsContext";

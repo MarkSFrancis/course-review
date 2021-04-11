@@ -2,7 +2,7 @@ import { ResourcesProvider } from "./ResourcesContext";
 import { ResourceList } from "./ResourcesList";
 import React from "react";
 import { useFirestoreCollection } from "../../utils";
-import { Section } from "../Layout";
+import { Section } from "design-system";
 import { QueryGuard } from "../Query";
 import { FancyHeading } from "../Typography";
 import { VStack } from "design-system";

@@ -56,6 +56,7 @@ export const AddTopic: FC<AddTopicProps> = (props) => {
       <Button
         leftIcon={<IconPlus />}
         isLoading={createTopicStatus.state === "loading"}
+        isDisabled={!value}
         onClick={handleAddCreate}
       >
         {isNew ? "Create topic" : "Add topic"}

@@ -1,9 +1,8 @@
-import { Box, VStack } from "design-system";
+import { Section, VStack } from "design-system";
 import React, { FC } from "react";
 import { ResourceAudit } from "./ResourceAudit";
 import { ResourceTitle } from "./ResourceTitle";
 import { ResourceLink } from "./ResourceLink";
-import { Section } from "../../Layout";
 
 export const ResourceThumbnail: FC = () => (
   <Section as="article">

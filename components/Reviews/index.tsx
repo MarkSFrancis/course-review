@@ -1,8 +1,7 @@
-import { VStack } from "design-system";
+import { Section, VStack } from "design-system";
 import React, { FC } from "react";
 import { Review } from "../../models";
 import { WithId } from "../../utils";
-import { Section } from "../Layout";
 import { SecondaryHeading } from "../Typography";
 import { AddReview } from "./AddReview";
 import { ReviewsProvider } from "./ReviewsContext";

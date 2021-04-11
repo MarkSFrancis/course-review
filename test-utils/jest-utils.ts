@@ -1,1 +1,1 @@
-export { mocked } from "ts-jest";
+export { mocked } from "ts-jest/utils";

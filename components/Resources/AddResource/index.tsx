@@ -1,8 +1,7 @@
-import { VStack } from "design-system";
+import { VStack, Section } from "design-system";
 import { FC, useCallback } from "react";
 import { FancyHeading } from "../../Typography";
 import { AddResourceForm, NewResource } from "./AddResourceForm";
-import { Section } from "../../Layout";
 import { now, useFirestoreAdd, useUser } from "../../../utils";
 import { Resource } from "../../../models";
 import { FormikHelpers } from "formik";

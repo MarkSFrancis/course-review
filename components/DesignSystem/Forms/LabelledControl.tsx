@@ -17,8 +17,6 @@ export const LabelledControl: FC<LabelledControlProps> = ({
   const { field, meta, form } = useField();
   const errors = form.errors[field.name];
 
-  errors ? console.log(errors) : {};
-
   return (
     <FormControl isRequired={isRequired} isInvalid={meta.error && meta.touched}>
       {label && <FormLabel htmlFor={field.name}>{label}</FormLabel>}

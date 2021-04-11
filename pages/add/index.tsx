@@ -1,6 +1,6 @@
 import { AddResource } from "../../components/Resources/AddResource";
 import { PageMeta } from "../../components/PageMeta";
-import { PageContainer } from "../../components/Layout/PageContainer";
+import { PageContainer } from "design-system";
 import { SignedInGuard } from "../../components/Auth";
 
 export default function AddPage() {
