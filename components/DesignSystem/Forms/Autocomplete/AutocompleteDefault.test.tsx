@@ -1,7 +1,7 @@
 import { Menu } from "@chakra-ui/menu";
 import { ReactNode } from "react";
 import { act } from "react-dom/test-utils";
-import { render as reactRender, screen, userEvents, waitFor } from "test-utils";
+import { render as reactRender, screen, userEvents } from "test-utils";
 import {
   AutocompleteContext,
   AutocompleteProvider,
