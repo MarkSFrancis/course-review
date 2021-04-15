@@ -12,7 +12,7 @@ export const AddReview: FC = () => {
   const { id: resourceId } = useResource();
   const { reviews } = useReviews();
   const [addReview, state] = useFirestoreAdd<Review>();
-  const user = useUser();
+  const { user } = useUser();
 
   const onSubmit = useCallback(
     (newReview: NewReview, helpers: FormikHelpers<NewReview>) => {
@@ -21,9 +21,9 @@ export const AddReview: FC = () => {
         rating: newReview.stars,
 
         createdBy: {
-          uid: user.user.uid,
-          displayName: user.user.displayName,
-          email: user.user.email,
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
         },
         createdOn: now(),
       }).finally(() => helpers.setSubmitting(false));
@@ -31,10 +31,7 @@ export const AddReview: FC = () => {
     [addReview, resourceId, user]
   );
 
-  if (
-    !user?.user?.uid ||
-    reviews?.find((r) => r.createdBy.uid === user.user.uid)
-  ) {
+  if (!user?.uid || reviews?.find((r) => r.createdBy.uid === user.uid)) {
     // Don't allow user to create multiple reviews
     return <></>;
   }

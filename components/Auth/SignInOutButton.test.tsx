@@ -13,7 +13,7 @@ const useUserMock = mocked(useUser);
 
 describe("SignInOutButton", () => {
   it("Should show nothing when user state is not loaded", () => {
-    useUserMock.mockReturnValue(undefined);
+    useUserMock.mockReturnValue({ isLoadingUser: true, user: undefined });
 
     const element = render(<SignInOutButton />);
 
@@ -21,7 +21,7 @@ describe("SignInOutButton", () => {
   });
 
   it('Should show "Sign In" when user is not logged in', () => {
-    useUserMock.mockReturnValue({});
+    useUserMock.mockReturnValue({ isLoadingUser: false, user: undefined });
 
     render(<SignInOutButton />);
 
@@ -30,7 +30,10 @@ describe("SignInOutButton", () => {
   });
 
   it('Should show "Sign Out" when user is logged in', () => {
-    useUserMock.mockReturnValue({ user: {} as firebaseAuth.User });
+    useUserMock.mockReturnValue({
+      isLoadingUser: false,
+      user: {} as firebaseAuth.User,
+    });
 
     render(<SignInOutButton />);
 
@@ -41,7 +44,9 @@ describe("SignInOutButton", () => {
   it('Should sign in when "Sign in" is clicked', async () => {
     let isSignedIn = false;
     useUserMock.mockImplementation(() =>
-      isSignedIn ? { user: {} as firebaseAuth.User } : {}
+      isSignedIn
+        ? { isLoadingUser: false, user: {} as firebaseAuth.User }
+        : { isLoadingUser: false, user: undefined }
     );
 
     authMock.signInWithPopup.mockImplementation(async () => {
@@ -67,7 +72,9 @@ describe("SignInOutButton", () => {
   it('Should sign out when "Sign out" is clicked', async () => {
     let isSignedIn = true;
     useUserMock.mockImplementation(() =>
-      isSignedIn ? { user: {} as firebaseAuth.User } : {}
+      isSignedIn
+        ? { isLoadingUser: false, user: {} as firebaseAuth.User }
+        : { isLoadingUser: false, user: undefined }
     );
 
     authMock.signOut.mockImplementation(async () => {

@@ -8,7 +8,7 @@ const useUserMock = mocked(useUser);
 
 describe("SignedInGuard", () => {
   it("should render spinner while loading", () => {
-    useUserMock.mockReturnValue(undefined);
+    useUserMock.mockReturnValue({ isLoadingUser: true, user: undefined });
 
     render(<SignedInGuard />);
 
@@ -18,7 +18,7 @@ describe("SignedInGuard", () => {
   });
 
   it('should render "You must be signed in to access this" when not signed in', () => {
-    useUserMock.mockReturnValue({});
+    useUserMock.mockReturnValue({ isLoadingUser: false, user: undefined });
 
     render(<SignedInGuard />);
 
@@ -28,7 +28,7 @@ describe("SignedInGuard", () => {
   });
 
   it("should render notSignedIn when not logged in", () => {
-    useUserMock.mockReturnValue({});
+    useUserMock.mockReturnValue({ isLoadingUser: false, user: undefined });
 
     const testNotSignedInId = "not-signed-in-id";
     const testChildId = "child-id";
@@ -47,7 +47,10 @@ describe("SignedInGuard", () => {
   });
 
   it("should render children when signed in", () => {
-    useUserMock.mockReturnValue({ user: { uid: "1" } as firebaseAuth.User });
+    useUserMock.mockReturnValue({
+      isLoadingUser: false,
+      user: { uid: "1" } as firebaseAuth.User,
+    });
 
     const testNotSignedInId = "not-signed-in-child";
     const testChildId = "child-id";

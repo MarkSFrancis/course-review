@@ -1,8 +1,12 @@
 import { InputProps, useMenuContext, Input } from "design-system";
 import React, { ChangeEvent, FC, LegacyRef, useCallback } from "react";
-import { useAutocompleteContext } from "./AutocompleteContext";
+import { useAutocompleteContext } from "../AutocompleteContext";
 
-export const AutocompleteInput: FC<Omit<InputProps, "value">> = (props) => {
+export type AutocompleteInputElementProps = Omit<InputProps, "value">;
+
+export const AutocompleteInputElement: FC<AutocompleteInputElementProps> = (
+  props
+) => {
   const { onChange, onKeyDown, ...rest } = props;
   const menu = useMenuContext();
   const { value, setValue } = useAutocompleteContext();
@@ -18,12 +22,12 @@ export const AutocompleteInput: FC<Omit<InputProps, "value">> = (props) => {
         if (e.target.value) {
           menu.onOpen();
         }
-      } else {
-        // Hack due to bad focus logic within chakra-ui
-        setTimeout(() => {
-          menu.buttonRef.current?.focus();
-        }, 0);
       }
+
+      // Hack due to bad focus logic within chakra-ui
+      setTimeout(() => {
+        menu.buttonRef.current?.focus();
+      }, 0);
       setValue?.(e.target.value);
       onChange?.(e);
     },

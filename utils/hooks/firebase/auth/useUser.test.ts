@@ -18,23 +18,25 @@ describe("useUser", () => {
     });
   });
 
-  it("returns undefined when user is not loaded", () => {
+  it("sets isLoading to true and user to undefined when user is not loaded", () => {
     const { result } = renderHook(() => useUser());
 
-    expect(result.current).toBeUndefined();
+    expect(result.current.isLoadingUser).toBe(true);
+    expect(result.current.user).toBeUndefined();
   });
 
-  it("sets user to undefined when user is not logged in", () => {
+  it("sets isLoading to false and user to undefined when user is not logged in", () => {
     const { result } = renderHook(() => useUser());
 
     act(() => {
       setUser(undefined);
     });
 
+    expect(result.current.isLoadingUser).toBe(false);
     expect(result.current.user).toBeUndefined();
   });
 
-  it("sets user to a value when user is logged in", () => {
+  it("sets isLoading to false and user to a value when user is logged in", () => {
     const { result } = renderHook(() => useUser());
     let user = { uid: "12" } as firebaseAuth.User;
 
@@ -42,6 +44,7 @@ describe("useUser", () => {
       setUser(user);
     });
 
+    expect(result.current.isLoadingUser).toBe(false);
     expect(result.current.user).toBe(user);
   });
 });

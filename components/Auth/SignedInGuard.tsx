@@ -8,9 +8,9 @@ export interface SignedInGuardProps {
 }
 
 export const SignedInGuard: FC<SignedInGuardProps> = (props) => {
-  const user = useUser();
+  const { user, isLoadingUser } = useUser();
 
-  if (!user) {
+  if (isLoadingUser) {
     return (
       <Center>
         <Spinner />
@@ -18,7 +18,7 @@ export const SignedInGuard: FC<SignedInGuardProps> = (props) => {
     );
   }
 
-  if (!user.user) {
+  if (!user) {
     return <>{props.notSignedIn ?? <NotSignedIn />}</>;
   }
 
