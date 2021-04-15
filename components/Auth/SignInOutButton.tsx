@@ -7,7 +7,7 @@ import { MicrosoftLogo } from "../Logo";
 export const SignInOutButton = forwardRef<ButtonProps, typeof Button>(
   (props, ref) => {
     const [isChangingState, setIsChangingState] = useSafeState(false);
-    const user = useUser();
+    const { user, isLoadingUser } = useUser();
 
     const signIn = useCallback((e: MouseEvent) => {
       e.preventDefault();
@@ -23,11 +23,11 @@ export const SignInOutButton = forwardRef<ButtonProps, typeof Button>(
       auth.signOut().finally(() => setIsChangingState(false));
     }, []);
 
-    if (!user) {
+    if (isLoadingUser) {
       return <></>;
     }
 
-    if (!user.user || isChangingState) {
+    if (!user || isChangingState) {
       return (
         <Button
           colorScheme="gray"

@@ -4,8 +4,17 @@ import React, { FC } from "react";
 export const AutocompleteSuggestions: FC<MenuListProps> = (props) => {
   const menu = useMenuContext();
 
+  if (!menu.isOpen) {
+    return <></>;
+  }
+
   return (
-    <Box position="absolute" minWidth="100%" zIndex="1" top={menu.buttonRef.current?.clientHeight ?? 0}>
+    <Box
+      position="absolute"
+      minWidth="100%"
+      zIndex="1"
+      top={menu.buttonRef.current?.clientHeight ?? 0}
+    >
       <MenuList {...props} />
     </Box>
   );

@@ -2,7 +2,6 @@ import { createContext, useContext } from "react";
 
 export interface AutocompleteContext {
   value: string;
-  suggestions: string[];
   setValue: (newValue: string) => void;
 }
 
