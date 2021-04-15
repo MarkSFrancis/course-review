@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "next dev",
-    "prefire": "mkdir .firebase -p",
+    "prefire": "mkdir -p .firebase",
     "fire": "firebase emulators:start --import ./.firebase/firestore-emulator-data --export-on-exit",
     "build": "next build",
     "build:prod": "yarn build && yarn next export",
