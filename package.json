@@ -10,7 +10,8 @@
     "build:prod": "yarn build && yarn next export",
     "start:prod": "next start",
     "start:frontend": "next dev",
-    "test": "jest --changedSince main"
+    "test": "jest --changedSince main",
+    "test:all": "jest"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.9",
