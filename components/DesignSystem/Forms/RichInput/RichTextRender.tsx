@@ -7,7 +7,6 @@ import {
 } from "slate-react/dist/components/editable";
 import { Element, Leaf } from "./utils/elements";
 import { onRichTextKeyDown } from "./utils/shortcuts";
-import { Box } from "design-system";
 
 export interface RichTextRenderProps
   extends Omit<EditableProps, "value" | "onChange"> {}
@@ -38,14 +37,12 @@ export const RichTextRender: FC<RichTextRenderProps> = (props) => {
   );
 
   return (
-    <Box padding="3">
-      <Editable
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        onKeyDown={handleKeyDown}
-        readOnly={readOnly}
-        {...editorProps}
-      />
-    </Box>
+    <Editable
+      renderElement={renderElement}
+      renderLeaf={renderLeaf}
+      onKeyDown={handleKeyDown}
+      readOnly={readOnly}
+      {...editorProps}
+    />
   );
 };

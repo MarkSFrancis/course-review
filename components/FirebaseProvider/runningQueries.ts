@@ -36,7 +36,7 @@ export const removeQuery = (
 
   const match = findQuery(queries, queryToRemove);
 
-  if (match.subject.totalListeners === 0) {
+  if (match && match.subject.totalListeners === 0) {
     match.subject.destroy();
     queries = queries.filter((q) => q !== match);
   }

@@ -1,9 +1,5 @@
-import {
-  BlurryBlobs,
-  ChakraProvider,
-  PageContainer,
-  SimpleGrid,
-} from "design-system";
+import { BlobsBackground } from "../components/BlobsBackground";
+import { ChakraProvider, SimpleGrid } from "design-system";
 import React from "react";
 import { FirebaseProvider } from "../components/FirebaseProvider";
 import { NavBar } from "../components/NavBar";
@@ -14,7 +10,7 @@ function MyApp({ Component, pageProps }) {
       <FirebaseProvider>
         <SimpleGrid>
           <NavBar />
-          <BlurryBlobs
+          <BlobsBackground
             blobColors={[
               "rgba(245, 101, 101, 0.6)",
               "rgba(237, 100, 166, 0.6)",
@@ -26,7 +22,7 @@ function MyApp({ Component, pageProps }) {
             ]}
           >
             <Component {...pageProps} />
-          </BlurryBlobs>
+          </BlobsBackground>
         </SimpleGrid>
       </FirebaseProvider>
     </ChakraProvider>

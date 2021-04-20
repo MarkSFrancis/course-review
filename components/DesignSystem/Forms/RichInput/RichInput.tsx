@@ -32,7 +32,11 @@ export const RichInput: FC<RichInputProps & Omit<BoxProps, "onChange">> = (
         <Box padding="3">{toolbar ?? <DefaultToolbar />}</Box>
         <Divider />
 
-        {children ?? <RichTextRender />}
+        {children ?? (
+          <Box padding={3}>
+            <RichTextRender />
+          </Box>
+        )}
       </Slate>
     </RichInputBox>
   );
