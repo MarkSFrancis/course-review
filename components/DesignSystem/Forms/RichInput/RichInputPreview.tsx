@@ -21,11 +21,9 @@ export const RichInputPreview: FC<
   }
 
   return (
-    <RichInputBox>
-      <Slate editor={editor} onChange={() => {}} value={renderValue}>
-        <RichTextRender {...editorProps} />
-      </Slate>
-    </RichInputBox>
+    <Slate editor={editor} onChange={() => {}} value={renderValue}>
+      <RichTextRender {...editorProps} />
+    </Slate>
   );
 };
 

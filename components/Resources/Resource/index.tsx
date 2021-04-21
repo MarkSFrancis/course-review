@@ -1,13 +1,12 @@
 import React, { FC } from "react";
-import { useFirestoreCollection, useFirestoreDoc } from "../../../utils";
-import { QueriesGuard } from "../../Query";
-import { Section, VStack } from "design-system";
-import { Resource as ResourceDb, Review } from "../../../models";
+import { useFirestoreDoc } from "../../../utils";
+import { QueryGuard } from "../../Query";
+import { VStack } from "design-system";
+import { Resource as ResourceDb } from "../../../models";
 import { ResourceProvider } from "../ResourceContext";
-import { ReviewsProvider } from "../../Reviews/ReviewsContext";
-import { Reviews } from "../../Reviews";
 import { ResourceDisplay } from "./ResourceDisplay";
 import { SkeletonResource } from "./SkeletonResource";
+import { Reviews } from "components/Reviews";
 
 export * from "./ResourceThumbnail";
 
@@ -16,31 +15,20 @@ export interface ResourceProps {
 }
 
 export const Resource: FC<ResourceProps> = (props) => {
-  const queryResource = useFirestoreDoc<ResourceDb>((db) =>
+  const resourceQuery = useFirestoreDoc<ResourceDb>((db) =>
     db.doc(`resources/${props.id}`)
-  );
-
-  const queryReviews = useFirestoreCollection<Review>((db) =>
-    db.collection(`resources/${props.id}/reviews`)
   );
 
   return (
     <VStack spacing={4} align="stretch">
-      <QueriesGuard
-        queries={[queryResource, queryReviews] as const}
-        spinner={<SkeletonResource />}
-      >
-        {({ value: resource }, { value: reviews }) => (
-          <>
-            <ResourceProvider value={resource}>
-              <ReviewsProvider value={{ reviews }}>
-                <ResourceDisplay />
-                <Reviews reviews={reviews} />
-              </ReviewsProvider>
-            </ResourceProvider>
-          </>
+      <QueryGuard query={resourceQuery} spinner={<SkeletonResource />}>
+        {({ value: resource }) => (
+          <ResourceProvider value={resource}>
+            <ResourceDisplay />
+          </ResourceProvider>
         )}
-      </QueriesGuard>
+      </QueryGuard>
+      <Reviews resourceId={props.id} resourceQuery={resourceQuery} />
     </VStack>
   );
 };
