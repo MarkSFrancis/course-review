@@ -27,7 +27,7 @@
       ],
       "design-system": [
         "./components/DesignSystem"
-      ],
+      ]
     }
   },
   "include": [
