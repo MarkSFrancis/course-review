@@ -56,7 +56,7 @@ export const addQuery = (
     queries = [...queries, match];
   }
 
-  const subscription = match.subject.subscribe(listener);
+  const subscription = match.subject.subscribe({ next: listener });
 
   return { subscription, queries };
 };
