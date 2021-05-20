@@ -13,7 +13,7 @@ import React, { FC, useCallback } from "react";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
 import { FetchState, FirestoreAddResult } from "../../../../utils";
 import { ErrorDisplay, SuccessDisplay } from "../../../Alert";
-import { RichInputElement } from "components/DesignSystem/Forms/RichInput/utils";
+import { RichInputElement } from "design-system";
 
 export interface AddReviewFormProps {
   onSubmit: (
