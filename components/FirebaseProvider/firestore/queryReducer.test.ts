@@ -17,7 +17,7 @@ describe("queryStateAsSubject", () => {
     const { subject } = queryStateAsSubject(state);
 
     const fn = jest.fn();
-    subject.subscribe(fn);
+    subject.subscribe({ next: fn });
 
     expect(fn).toHaveBeenCalledTimes(1);
     expect(fn).toHaveBeenCalledWith(state);
@@ -27,7 +27,7 @@ describe("queryStateAsSubject", () => {
     const { subject, dispatch } = queryStateAsSubject({ state: "loading" });
 
     const fn = jest.fn();
-    subject.subscribe(fn);
+    subject.subscribe({ next: fn });
 
     const consoleFn = jest.fn();
     jest.spyOn(console, "error").mockImplementation(consoleFn);
@@ -48,7 +48,7 @@ describe("queryStateAsSubject", () => {
     const { subject, dispatch } = queryStateAsSubject({ state: "loading" });
 
     const fn = jest.fn();
-    subject.subscribe(fn);
+    subject.subscribe({ next: fn });
 
     const value = "val";
     dispatch({ type: "success", payload: value });
@@ -64,7 +64,7 @@ describe("queryStateAsSubject", () => {
     const { subject, dispatch } = queryStateAsSubject({ state: "loading" });
 
     const fn = jest.fn();
-    subject.subscribe(fn);
+    subject.subscribe({ next: fn });
 
     dispatch({ type: "notFound", payload: undefined });
 
@@ -78,7 +78,7 @@ describe("queryStateAsSubject", () => {
     const { subject, dispatch } = queryStateAsSubject({ state: "loading" });
 
     const fn = jest.fn();
-    subject.subscribe(fn);
+    subject.subscribe({ next: fn });
 
     dispatch({ type: "loading", payload: undefined });
 

@@ -15,8 +15,8 @@ export const createCounterSubject = <T>(
   subject: Subscribable<T>
 ): CounterSubject<T> => {
   let subscriptions: Unsubscribable[] = [];
-  const subscribe: Subscribe<T> = (...params: any[]) => {
-    const subscription = subject.subscribe(...params);
+  const subscribe: Subscribe<T> = (observer) => {
+    const subscription = subject.subscribe(observer);
     subscriptions = [...subscriptions, subscription];
 
     const cleanup: Unsubscribable = {
