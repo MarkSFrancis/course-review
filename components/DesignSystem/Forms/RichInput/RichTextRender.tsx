@@ -1,4 +1,4 @@
-import { Editable, useEditor } from "slate-react";
+import { Editable, useSlateStatic } from "slate-react";
 import React, { FC, useCallback } from "react";
 import {
   EditableProps,
@@ -8,11 +8,10 @@ import {
 import { Element, Leaf } from "./utils/elements";
 import { onRichTextKeyDown } from "./utils/shortcuts";
 
-export interface RichTextRenderProps
-  extends Omit<EditableProps, "value" | "onChange"> {}
+export type RichTextRenderProps = Omit<EditableProps, "value" | "onChange">;
 
 export const RichTextRender: FC<RichTextRenderProps> = (props) => {
-  const editor = useEditor();
+  const editor = useSlateStatic();
 
   const { onKeyDown, readOnly, ...editorProps } = props;
 

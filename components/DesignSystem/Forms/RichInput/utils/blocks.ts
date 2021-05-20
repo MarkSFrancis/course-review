@@ -1,6 +1,6 @@
 import { Editor, Element as SlateElement, Text, Transforms } from "slate";
 import { BlockOptions } from "../ToolbarButton";
-import { BlockFormat, ListTypes } from "./types";
+import { ListTypes, RichInputElement } from "./types";
 
 /**
  * Slate change handler
@@ -15,7 +15,7 @@ export const isBlockActive: SC<boolean> = (
     match: (n) =>
       !Editor.isEditor(n) &&
       SlateElement.isElement(n) &&
-      n.type === options.format,
+      (n as RichInputElement).type === options.format,
   });
 
   const match = matches.next();
@@ -43,7 +43,11 @@ export const enableBlock: SC = (editor, options) => {
 
 export const disableBlock: SC = (editor) => {
   removeListWrapper(editor);
-  Transforms.setNodes(editor, { type: "paragraph" });
+  const newNode: RichInputElement = {
+    type: "paragraph",
+    children: [],
+  };
+  Transforms.setNodes(editor, newNode);
 };
 
 const isElement = (node: SlateElement | Text): node is SlateElement =>
@@ -52,20 +56,36 @@ const isElement = (node: SlateElement | Text): node is SlateElement =>
 const removeListWrapper = (editor: Editor) => {
   // Removes all existing list wrappers
   Transforms.unwrapNodes(editor, {
-    match: (n) => ListTypes.includes(isElement(n) && (n.type as BlockFormat)),
+    match: (n) =>
+      ListTypes.includes(isElement(n) && (n as RichInputElement).type),
     split: true,
   });
 };
 
 const enableListBlock: SC = (editor, options) => {
   removeListWrapper(editor);
-  Transforms.setNodes(editor, { type: "list-item" });
+  const newNode: RichInputElement = {
+    type: "list-item",
+    children: [],
+  };
+  Transforms.setNodes(editor, newNode);
 
-  const block: SlateElement = { type: options.format, children: [] };
+  const childNode: RichInputElement = {
+    type: options.format,
+    children: [],
+  };
+
+  const block: SlateElement = childNode;
   Transforms.wrapNodes(editor, block);
 };
 
 const enableNonListBlock: SC = (editor, options) => {
   removeListWrapper(editor);
-  Transforms.setNodes(editor, { type: options.format });
+
+  const newNode: RichInputElement = {
+    type: options.format,
+    children: [],
+  };
+
+  Transforms.setNodes(editor, newNode);
 };

@@ -1,35 +1,34 @@
-import { Slate, withReact } from "slate-react";
-import { createEditor, Node } from "slate";
+import { Slate, withReact, ReactEditor } from "slate-react";
+import { createEditor } from "slate";
 import React, { FC, useMemo } from "react";
 import { RichTextRender, RichTextRenderProps } from "./RichTextRender";
-import { RichInputBox } from "./RichInputBox";
+import { RichInputElement } from "./utils";
 
 export interface RichInputPreviewProps {
-  value: Node[];
+  value: RichInputElement[];
 }
 
-export const RichInputPreview: FC<
-  RichInputPreviewProps & RichTextRenderProps
-> = (props) => {
-  const editor = useMemo(() => withReact(createEditor()), []);
+export const RichInputPreview: FC<RichInputPreviewProps & RichTextRenderProps> =
+  (props) => {
+    const editor = useMemo(() => withReact(createEditor() as ReactEditor), []);
 
-  const { value, ...editorProps } = props;
-  let renderValue = value;
+    const { value, ...editorProps } = props;
+    let renderValue = value;
 
-  if (!value || value.length === 0) {
-    renderValue = defaultValue;
-  }
+    if (!value || value.length === 0) {
+      renderValue = defaultValue;
+    }
 
-  return (
-    <Slate editor={editor} onChange={() => {}} value={renderValue}>
-      <RichTextRender {...editorProps} />
-    </Slate>
-  );
-};
+    return (
+      <Slate editor={editor} onChange={() => void 0} value={renderValue}>
+        <RichTextRender {...editorProps} />
+      </Slate>
+    );
+  };
 
-const defaultValue: Node[] = [
+const defaultValue: RichInputElement[] = [
   {
-    type: "text",
+    type: "paragraph",
     children: [
       {
         text: "",
