@@ -1,3 +1,5 @@
+import { BaseElement, Text } from "slate";
+
 export type MarkFormat = "bold" | "code" | "italic" | "underline";
 export type BlockFormat =
   | "block-quote"
@@ -10,3 +12,7 @@ export type BlockFormat =
   | "";
 
 export const ListTypes: BlockFormat[] = ["numbered-list", "bulleted-list"];
+
+export interface RichInputElement extends BaseElement {
+  type: BlockFormat;
+}

@@ -8,27 +8,27 @@ import {
 } from "design-system";
 import React, { FC } from "react";
 import { RenderElementProps, RenderLeafProps } from "slate-react";
-import { BlockFormat, MarkFormat } from "./types";
+import { MarkFormat, RichInputElement } from "./types";
 
 export const Element: FC<RenderElementProps> = ({
   attributes,
   children,
   element,
 }) => {
-  switch (element.type as BlockFormat) {
+  switch ((element as RichInputElement).type) {
     case "block-quote":
       return <blockquote {...attributes}>{children}</blockquote>;
     case "bulleted-list":
       return <UnorderedList {...attributes}>{children}</UnorderedList>;
     case "heading-one":
       return (
-        <Heading as="h1" size="4xl" {...attributes}>
+        <Heading as="h1" {...attributes}>
           {children}
         </Heading>
       );
     case "heading-two":
       return (
-        <Heading as="h2" size="xl" {...attributes}>
+        <Heading as="h2" {...attributes}>
           {children}
         </Heading>
       );
@@ -42,7 +42,7 @@ export const Element: FC<RenderElementProps> = ({
 };
 
 export const Leaf: FC<RenderLeafProps> = ({ attributes, children, leaf }) => {
-  const l = (leaf as unknown) as Record<MarkFormat, boolean>;
+  const l = leaf as unknown as Record<MarkFormat, boolean>;
 
   if (l.bold) {
     children = <strong>{children}</strong>;

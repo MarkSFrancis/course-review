@@ -14,7 +14,7 @@ export const onRichTextKeyDown = (
   e: React.KeyboardEvent<HTMLDivElement>
 ) => {
   for (const markHotkey in markHotkeys) {
-    if (isHotkey(markHotkey, (e as unknown) as KeyboardEvent)) {
+    if (isHotkey(markHotkey, e as unknown as KeyboardEvent)) {
       e.preventDefault();
       const format = markHotkeys[markHotkey];
       toggleMark(editor, { format });

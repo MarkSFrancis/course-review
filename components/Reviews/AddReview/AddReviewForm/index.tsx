@@ -10,10 +10,10 @@ import {
   VStack,
 } from "design-system";
 import React, { FC, useCallback } from "react";
-import { Node } from "slate";
 import { Form, Formik, FormikErrors, FormikHelpers } from "formik";
 import { FetchState, FirestoreAddResult } from "../../../../utils";
 import { ErrorDisplay, SuccessDisplay } from "../../../Alert";
+import { RichInputElement } from "design-system";
 
 export interface AddReviewFormProps {
   onSubmit: (
@@ -25,12 +25,12 @@ export interface AddReviewFormProps {
 
 export interface NewReview {
   stars: number;
-  details: Node[];
+  details: RichInputElement[];
 }
 
 const initialValue: NewReview = {
   stars: 3,
-  details: [{ type: "paragraph", children: [{ text: "" }] }],
+  details: [{ type: "", children: [{ text: "" }] }],
 };
 
 export const AddReviewForm: FC<AddReviewFormProps> = (props) => {
