@@ -13,7 +13,7 @@ describe("createCounterSubject", () => {
     const counter = createCounterSubject(subject);
 
     const fn = jest.fn();
-    counter.subscribe(fn);
+    counter.subscribe({ next: fn });
 
     subject.next(0);
 
@@ -22,14 +22,14 @@ describe("createCounterSubject", () => {
 
   it("should increment the listener count when something subscribes", () => {
     const counter = createCounterSubject(new Subject());
-    counter.subscribe(jest.fn());
+    counter.subscribe({ next: jest.fn() });
 
     expect(counter.totalListeners).toEqual(1);
   });
 
   it("should decrement the listener count whe something unsubscribes", () => {
     const counter = createCounterSubject(new Subject());
-    const subscription = counter.subscribe(jest.fn());
+    const subscription = counter.subscribe({ next: jest.fn() });
 
     subscription.unsubscribe();
 
@@ -38,7 +38,7 @@ describe("createCounterSubject", () => {
 
   it("should not affect the count if the same listener unsubscribes twice", () => {
     const counter = createCounterSubject(new Subject());
-    const subscription = counter.subscribe(jest.fn());
+    const subscription = counter.subscribe({ next: jest.fn() });
 
     subscription.unsubscribe();
     subscription.unsubscribe();
