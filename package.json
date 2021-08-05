@@ -35,7 +35,7 @@
     "@types/node": "^16.4.11",
     "@types/react": "^17.0.15",
     "babel-jest": "^27.0.6",
-    "color": "^4.0.0",
+    "color": "^4.0.1",
     "dayjs": "^1.10.6",
     "firebase": "^8.8.1",
     "firebase-tools": "^9.16.0",
