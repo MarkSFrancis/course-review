@@ -37,7 +37,7 @@
     "babel-jest": "^27.1.0",
     "color": "^4.0.1",
     "dayjs": "^1.10.6",
-    "firebase": "^8.10.0",
+    "firebase": "^9.0.0",
     "firebase-tools": "^9.16.6",
     "formik": "^2.2.9",
     "is-hotkey": "^0.2.0",
