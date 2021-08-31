@@ -32,7 +32,7 @@
     "@types/color": "^3.0.2",
     "@types/is-hotkey": "^0.1.4",
     "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.2",
+    "@types/node": "^16.7.6",
     "@types/react": "^17.0.19",
     "babel-jest": "^27.1.0",
     "color": "^4.0.1",
