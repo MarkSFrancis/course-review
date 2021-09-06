@@ -33,7 +33,7 @@
     "@types/is-hotkey": "^0.1.5",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.10",
-    "@types/react": "^17.0.19",
+    "@types/react": "^17.0.20",
     "babel-jest": "^27.1.0",
     "color": "^4.0.1",
     "dayjs": "^1.10.6",
